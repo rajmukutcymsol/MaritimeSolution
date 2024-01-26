@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "ViewAudit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<input type="hidden" id="id" value="@ViewBag.id" />
+<input type="hidden" id="autoid" value="@ViewBag.auto_id" />
+<input type="hidden" id="requirement_type" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/EditNewRequests")
+}

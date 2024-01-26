@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SOF_Daily_Work_Time" targetNamespace="http://tempuri.org/SOF_Daily_Work_Time.xsd" xmlns:mstns="http://tempuri.org/SOF_Daily_Work_Time.xsd" xmlns="http://tempuri.org/SOF_Daily_Work_Time.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SOF_Daily_Work_Time" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SOF_Daily_Work_Time" msprop:Generator_UserDSName="SOF_Daily_Work_Time">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="report_date" msprop:Generator_ColumnVarNameInTable="columnreport_date" msprop:Generator_ColumnPropNameInRow="report_date" msprop:Generator_ColumnPropNameInTable="report_dateColumn" msprop:Generator_UserColumnName="report_date" type="xs:string" minOccurs="0" />
+              <xs:element name="formatted_date" msprop:Generator_ColumnVarNameInTable="columnformatted_date" msprop:Generator_ColumnPropNameInRow="formatted_date" msprop:Generator_ColumnPropNameInTable="formatted_dateColumn" msprop:Generator_UserColumnName="formatted_date" type="xs:string" minOccurs="0" />
+              <xs:element name="time" msprop:Generator_ColumnVarNameInTable="columntime" msprop:Generator_ColumnPropNameInRow="time" msprop:Generator_ColumnPropNameInTable="timeColumn" msprop:Generator_UserColumnName="time" type="xs:string" minOccurs="0" />
+              <xs:element name="Hrs_x003A_Min" msprop:Generator_ColumnVarNameInTable="_columnHrs_Min" msprop:Generator_ColumnPropNameInRow="_Hrs_Min" msprop:Generator_ColumnPropNameInTable="_Hrs_MinColumn" msprop:Generator_UserColumnName="Hrs:Min" type="xs:string" minOccurs="0" />
+              <xs:element name="Metric_x0020_Tons" msprop:Generator_ColumnVarNameInTable="columnMetric_Tons" msprop:Generator_ColumnPropNameInRow="Metric_Tons" msprop:Generator_ColumnPropNameInTable="Metric_TonsColumn" msprop:Generator_UserColumnName="Metric Tons" type="xs:string" minOccurs="0" />
+              <xs:element name="gang" msprop:Generator_ColumnVarNameInTable="columngang" msprop:Generator_ColumnPropNameInRow="gang" msprop:Generator_ColumnPropNameInTable="gangColumn" msprop:Generator_UserColumnName="gang" type="xs:string" minOccurs="0" />
+              <xs:element name="HatchNo" msprop:Generator_ColumnVarNameInTable="columnHatchNo" msprop:Generator_ColumnPropNameInRow="HatchNo" msprop:Generator_ColumnPropNameInTable="HatchNoColumn" msprop:Generator_UserColumnName="HatchNo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

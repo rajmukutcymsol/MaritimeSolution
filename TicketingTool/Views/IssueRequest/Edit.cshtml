@@ -1,0 +1,290 @@
+﻿@model TicketingTool.Models.ViewModel.vm_master
+@{
+    ViewBag.Title = "Edit Issue /Problem Request";
+}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pending Requestor Action</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea id="message" rows="7" cols="85"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnsent">Sent</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Rejection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Rejection Reason</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea id="message_rejection" required rows="7" cols="85"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnsent_Rejection">Sent</button>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Update Issue Or Problem Request</h3>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-sm btn-success btnsave" id="btnSave"> Save</a>
+                <a href="@Url.Action("Index","IssueRequest")" class="btn btn-sm btn-danger btnCancel" id="btnCancel"> Cancel</a>
+            </div>
+        </div>
+        <div class="box-body">
+            <input type="hidden" id="id" value="@ViewBag.Id" />
+            <input type="hidden" value="@ViewBag.requirementType" id="requirement_type" />
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Request Id</label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.auto_id" readonly="readonly" id="auto_id" placeholder="Auto ID">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Date</label>
+                    <input type="text" class="form-control input-sm datepicker" id="date_of_request" readonly="readonly" placeholder="Date Of Request">
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group-sm">
+                        <label for="exampleInputEmail1">Request for<span class="mandatoryIndicator">*</span></label>
+                        <div class="form-group-sm" id="AssignToPersonSection">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm" id="requester" name="requester" value="@ViewBag.Requester" />
+                                <input type="hidden" class="form-control input-sm" id="hfCustomer" name="CustomerId" value="@ViewBag.Requester" />
+                                <div class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="form-group col-md-3">
+            <label for="exampleInputtext1">Requester</label>
+            <input type="text" class="form-control input-sm" id="requester" placeholder="Requester" readonly="readonly">
+        </div>*@
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">LM Of Requester</label>
+                    <input type="text" class="form-control input-sm" id="lm_of_requested" placeholder="LM Of Requester" readonly="readonly">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Priority<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Title", new SelectList(ViewBag.priority, "id", "priority_name"), new { @class = "form-control input-sm", @id = "request_priority" })
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Title<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="request_title" placeholder="Title">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Project Name<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Project", new SelectList(Model.projects, "id", "project_name"), new { @class = "form-control input-sm", @id = "project_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Domain</label>
+                    @Html.DropDownList("Title", new SelectList(Model.domains, "id", "domain_name"), new { @class = "form-control input-sm", @id = "domain" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Tool / Solution Name<span class="mandatoryIndicator">*</span></label>
+                    @*@Html.DropDownList("SolutionName", new SelectList(ViewBag.master_tool, "id", "tool_name"), new { @class = "form-control input-sm", @id = "tool_solution_name", @disabled = "disabled" })*@
+                    <select id="tool_solution_name" name="tool_solution_name" class="form-control input-sm"></select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Use Case Name<span class="mandatoryIndicator">*</span></label>
+                    <select id="use_case_name" name="use_case_name" class="form-control input-sm"></select>
+                    @*@Html.DropDownList("usecases", new SelectList(Model.usecases, "Value", "Key"), new { @class = "form-control input-sm", @id = "use_case_name" })*@
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">CLI/GUI</label>
+                    @Html.DropDownList("Title", new SelectList(Model.mastercligui, "id", "cli_ui_name"), new { @class = "form-control input-sm", @id = "cli_ui_name" })
+                </div>
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Cost Value</label>
+                    <input type="text" class="form-control input-sm numberonly" maxlength="8" id="cost_value" placeholder="Cost Value">
+                </div>
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Connectivity Avail.</label>
+                    @Html.DropDownList("Connectivity Availability", new SelectList(ViewBag.BooleanDropdown, "Value", "Key"), new { @class = "form-control input-sm", @id = "connectivity_availability", @disabled = "disabled" })
+                </div>
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Crediential Avail.</label>
+                    @Html.DropDownList("Crediential Availability", new SelectList(ViewBag.BooleanDropdown, "Value", "Key"), new { @class = "form-control input-sm", @id = "crediential_availability", @disabled = "disabled" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Expt. Resolution (hr)<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" maxlength="18" id="expected_time_of_resolution_hour" placeholder="Expected Resolution Hour">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Resolution Offered</label>
+                    @Html.DropDownList("is_resolution_offered", new SelectList(ViewBag.BooleanDropdown, "Value", "Key"), new { @class = "form-control input-sm", @id = "is_resolution_offered" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Business Impact<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="business_benifit" placeholder="Business Benifit">
+                </div>
+
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Support Engineer</label>
+                    <input type="text" class="form-control input-sm" id="support_engineer" readonly="readonly" maxlength="250" placeholder="Support Engineer">
+                </div>
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Support Manager</label>
+                    <input type="text" class="form-control input-sm" id="support_manager" maxlength="250" placeholder="Support Manager">
+                </div>
+                @*<div class="form-group col-md-6">
+            <label for="exampleInputtext1">Use Cases</label>
+            <textarea type="text" cols="50" rows="2" class="form-control input-sm" id="use_case" placeholder="Enter Description Of Request"></textarea>
+        </div>*@
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Status</label>
+                    @Html.DropDownList("Status", new SelectList(Model.statuses, "id", "status_name"), new { @class = "form-control input-sm", @id = "request_status" })
+                </div>
+                <div class="form-group col-md-3" id="shairpoint" style="display:none">
+                    <label for="exampleInputtext1" id="shairpoint_label"> <span>Enter Shairpoint URL<span class="mandatoryIndicator">*</span></span></label>
+                    <input type="text" class="form-control input-sm" id="shairpoint_url" placeholder="NA">
+                </div>
+                <div class="form-group col-md-3" id="resolutioncategorys" style="display:none">
+                    <label for="exampleInputtext1" id="resolutioncategorys_label"> <span>Resolution Category</span></label>
+                    @Html.DropDownList("resolution_category", new SelectList(Model.masterresolutioncategory, "id", "resolution_category_name"), new { @class = "form-control input-sm", @id = "resolution_category" })
+                </div>
+                <div class="form-group col-md-3" id="res_cat_1" style="display:none">
+                    <label for="exampleInputtext1" id="resolutioncategorys_label"> <span>Res Category 1<span class="mandatoryIndicator">*</span></span></label>
+                    @Html.DropDownList("ResCat1", new SelectList(ViewBag.ResCat1, "id", "res_cat1_name"), new { @class = "form-control input-sm", @id = "res_cat1" })
+                </div>
+                <div class="form-group col-md-3" id="res_cat_2" style="display:none">
+                    <label for="exampleInputtext1" id="resolutioncategorys_label"> <span>Res Category 2<span class="mandatoryIndicator">*</span></span></label>
+                    <select id="res_cat2" name="res_cat2" class="form-control input-sm"></select>
+                </div>
+                <div class="form-group col-md-3" id="res_cat_3" style="display:none">
+                    <label for="exampleInputtext1" id="resolutioncategorys_label"> <span>Res Category 3<span class="mandatoryIndicator">*</span></span></label>
+                    <select id="res_cat3" name="res_cat3" class="form-control input-sm"></select>
+                </div>
+                <div class="form-group col-md-12" id="resolution" style="display:none">
+                    <label for="exampleInputtext1" id="resolutioncategorys_label"> <span>Resolution<span class="mandatoryIndicator">*</span></span></label>
+                    <textarea type="text" cols="50" rows="4" class="form-control input-sm" maxlength="500" id="resolution_category_comments" placeholder="Enter Comments" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border" id="task_head" style="display:none">
+            <h3 class="box-title">Assign Task to Team Member's</h3>
+        </div>
+        <div class="box-body" id="task" style="display:none">
+            <div class="row">
+                <div class="form-group col-md-4" style="display:none">
+                    <label for="exampleInputtext1">Tester Name</label>
+                    <input type="text" class="form-control input-sm" id="tester_name_sit" maxlength="250" placeholder="Tester Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Support Manager<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Masterprojectmanager", new SelectList(Model.masterprojectmanager, "id", "project_manager_name"), new { @class = "form-control input-sm", @id = "project_manager_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Lead Support<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Mastersolutionarchitect", new SelectList(Model.mastersolutionarchitect, "id", "master_solution_architect_name"), new { @class = "form-control input-sm", @id = "master_solution_architect_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Support Engineer<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("employee", new SelectList(ViewBag.Developers, "employee_id", "employee_name"), new { @class = "form-control input-sm", @id = "employee_id" })
+                </div>
+            </div>
+
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Description</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="exampleInputtext1">Description<span class="mandatoryIndicator">*</span></label>
+                    <textarea type="text" cols="50" rows="4" class="form-control input-sm" maxlength="500" id="request_description" placeholder="Enter Description Of Request" required></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleInputtext1">Notes</label>
+                    <textarea type="text" rows="4" cols="50" class="form-control input-sm" maxlength="500" id="request_notes" placeholder="text"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Uploads</h3>
+        </div>
+        <div class="box-body">
+            <div class="form-group col-md-3">
+                <label for="exampleInputtext1">Attachment Name</label>
+                <input type="text" class="form-control input-sm" id="mop_or_sop" maxlength="250" placeholder="Attachment Name">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="exampleInputFile">Attachments</label>
+                <input type="file" class="form-control input-sm" id="mop_sop_attachment_path" multiple>
+            </div>
+            <div class="table-responsive" id="tbldata">
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Status History</h3>
+        </div>
+        <div class="box-body" id="StatusHistory">
+
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Comments</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-11">
+                    <input type="text" style="background-color: aquamarine" id="ChatMessage" placeholder="Type Message..." class="form-control">
+                </div>
+                <div class="form-group col-md-1 box-tools pull-right" style="margin-top: -48x; margin-right: 0px;">
+                    <button type="button" class="btn btn-primary" id="btnChatSent">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="card card-primary direct-chat direct-chat-primary">
+                    <div class="card-body" id="tblChatDate">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <input type="hidden" id="sessionValue" value="@Session["access_role"]" />
+    <input type="hidden" id="sessionUserName" value="@Session["user_name"]" />
+    <input type="text" id="request_for" style="display:none" />
+</section>
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/bundles/InBound_Edit")
+    @*<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" el="Stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+}
+
+

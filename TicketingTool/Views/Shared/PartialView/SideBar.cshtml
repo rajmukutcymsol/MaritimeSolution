@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TicketingTool.Models.ViewModel.vm_menu>
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        @{ Html.RenderAction("SideBarUserPanel", "Common"); }
+
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+
+            @{
+                var istLevel = Model.Where(x => x.parent_id == null);
+                foreach (var item in istLevel)
+                {
+                    var second_level_menu = Model.Where(x => x.parent_id.ToString() == item.id.ToString()).ToList();
+                    if (second_level_menu.Count > 0)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="@item.menu_icon"></i> <span>@item.menu_name</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                @foreach (var menu2 in second_level_menu)
+                                {
+                                    <li><a href="@Url.Action(menu2.menu_action,menu2.menu_controller)"><i class="@menu2.menu_icon"></i> @menu2.menu_name</a></li>
+                                }
+                            </ul>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class=""><a href="@Url.Action(item.menu_action,item.menu_controller)"><i class="@item.menu_icon"></i> <span>@item.menu_name</span></a></li>
+                    }
+                }
+            }
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

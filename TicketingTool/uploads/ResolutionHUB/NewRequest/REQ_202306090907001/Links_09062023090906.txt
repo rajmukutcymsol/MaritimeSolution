@@ -1,0 +1,17 @@
+https://unms-mobily-bh.dyn.nesc.nokia.net/
+
+Ticketing tool
+https://tktsys.dyn.nesc.nokia.net/
+
+Shar drive for code
+https://nokia.sharepoint.com/sites/usecaseautomation/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fusecaseautomation%2FShared%20Documents%2FSourceCodes%2FTeam%2FRajMukut&p=true&ga=1
+
+GitLab
+https://bhgitlab.ext.net.nokia.com/users/sign_in
+
+GitLab Tranning Drive
+https://appcen-my.sharepoint.com/personal/talent_appcen_onmicrosoft_com/_layouts/15/onedrive.aspx?ct=1685438339841&or=Teams%2DHL&ga=1&id=%2Fpersonal%2Ftalent%5Fappcen%5Fonmicrosoft%5Fcom%2FDocuments%2FGIT%20Operation%2F2905%5FDay1
+
+for Resulotion Hus Drive
+https://nokia.sharepoint.com/sites/usecaseautomation/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fusecaseautomation%2FShared%20Documents%2FResolutionHUB&p=true&ga=1
+

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<TicketingTool.Models.ViewModel.vm_dashboard_data_count>
+<style>
+    .col-divider {
+        border-right: 1px solid #ccc;
+    }
+</style>
+<style>
+    .contentss {
+        min-height: 250px;
+        padding: 0px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+</style>
+
+<section class="contentss">
+    <div class="row">
+        @*@if (Session["user_name"] != null)
+        {
+            { Html.RenderAction("DashBoard_NR", "Dashboard"); }*@
+        <!-- Column 1 -->
+        <!--<div class="col-lg-4 col-md-4 col-sm-12 col-divider">
+    <h3>New Request</h3>
+    <hr>
+    <div class="info-box">
+        <span class="info-box-icon bg-blue"><i class="fa fa-check"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Acknowledge</span>
+            <span class="info-box-number">7</span>
+        </div>
+    </div>
+    <div class="info-box">
+        <span class="info-box-icon bg-green"><i class="fa fa-database"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">New Requirement</span>
+            <span class="info-box-number">37</span>
+        </div>
+    </div>-->
+        <!-- Add more info-box items for New Request column -->
+        <!--</div>-->
+        <!-- Column 2 -->
+        @*{ Html.RenderAction("DashBoard_CR", "Dashboard"); }*@
+        <!--<div class="col-lg-4 col-md-4 col-sm-12 col-divider">
+    <h3>Change Request</h3>
+    <hr>
+    <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-edit"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Existing Change Request</span>
+            <span class="info-box-number">71</span>
+        </div>
+    </div>-->
+        <!-- Add more info-box items for Change Request column -->
+        <!--</div>-->
+        <!-- Column 3 -->
+        @*{ Html.RenderAction("DashBoard_IR", "Dashboard"); }
+        }*@
+        <!--<div class="col-lg-4 col-md-4 col-sm-12">
+        <h3>Issues</h3>
+        <hr>
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-exclamation-triangle"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Issue / Problem</span>
+                <span class="info-box-number">202</span>
+            </div>
+        </div>-->
+        <!-- Add more info-box items for Issues column -->
+        <!--</div>-->
+    </div>
+</section>
+
+
+@*<div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-3">
+                <div class="info-box">
+                    <span class="info-box-icon @item.background_class"><i class="@item.icon_class"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">@item.requirement_type</span>
+                        <span class="info-box-number">@item.no_of_count</span>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>*@
+
+
+

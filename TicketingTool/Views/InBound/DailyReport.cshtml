@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "DailyReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+@Styles.Render("~/Content/datepicker")
+
+<section class="content">
+
+    <div class="box box-primary box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Reports List</h3>
+            <div class="box-tools pull-right">
+                <div class="box-tools pull-right">
+                    <a href="javascript:void(0);" class="btn btn-success btn-sm btnsave" id="btnCreate">
+                        @*<a href="@Url.Action("CreateDailyReport","Inbound")" class="btn btn-success btn-sm btnsave" id="btnSave">*@
+                        Create New
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="tblNewRequest">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            <th>Action</th>
+                            <th>Report Date</th>
+                            <th>Vessel_name</th>
+                            <th>Flag</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="sessionValue" value="@Session["access_role"]" />
+    <input type="hidden" id="sessionUserName" value="@Session["user_name"]" />
+
+</section>
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/datepicker")
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/settings/DailyReport.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+        // Click event for the "Create New" button
+        $("#btnCreate").click(function () {
+            // Get the current URL
+            var currentUrl = window.location.href;
+
+            // Find the last occurrence of "/"
+            var lastSlashIndex = currentUrl.lastIndexOf("/");
+
+            // Check if there's a match
+            if (lastSlashIndex !== -1) {
+                // Extract everything after the last "/"
+                var id = currentUrl.substring(lastSlashIndex + 1);
+                var reportdate = $("#report_date").val();
+                // Redirect to the CreateDailyReport action with the extracted ID
+                  window.location.href = '@Url.Action("CreateDailyReport", "Inbound")' + '/' + id;
+                //window.location.href = '@Url.Action("CreateDailyReport", "Inbound")' + '?id=' + id;
+            }
+        });
+
+    });
+    </script>
+
+}

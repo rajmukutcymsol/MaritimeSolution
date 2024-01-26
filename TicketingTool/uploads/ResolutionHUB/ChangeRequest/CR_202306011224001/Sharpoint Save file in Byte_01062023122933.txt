@@ -1,0 +1,71 @@
+ 		HttpPostedFileBase postedFile = Request.Files[i];
+
+                byte[] fileBytes;
+                using (var binaryReader = new BinaryReader(Request.Files[i].InputStream))
+                {
+                    fileBytes = binaryReader.ReadBytes(Request.Files[i].ContentLength);
+                }
+
+                string extension = Path.GetExtension(postedFile.FileName);
+                string file = Path.GetFileNameWithoutExtension(postedFile.FileName);
+                string newFileName = string.Concat(file, "_", DateTime.Now.ToString("ddMMyyyyhhmmss"), extension);
+
+                string Filepath = @"C:\Projects\Database\Ticketing_tool_23_05_2023.bak";//newFileName;;
+
+                var SharePointSite = ConfigurationManager.AppSettings["SharePointSite"];
+                var SharepointFileUpladUserName = ConfigurationManager.AppSettings["SharepointFileUpladUserName"];
+                var SharepointFileUpladPassword = ConfigurationManager.AppSettings["SharepointFileUpladPassword"];
+                string UploadFolder = "Shared Documents/ResolutionHUB/NewRequest";
+                string newFolderName = projectRequirement.auto_id;
+
+                CommonUtility.SaveOnSite(fileBytes, SharePointSite, SharepointFileUpladUserName, SharepointFileUpladPassword, Filepath, UploadFolder, newFolderName);
+
+
+
+
+
+
+ public async static void SaveOnSite(byte[] fileBytes, string  SharePointSite, string UserName, string Password, string Filepath, string UploadFolder, string newFolderName)
+        {
+            //string SharePointSite = "https://nokia.sharepoint.com/sites/usecaseautomation";
+            //string UserName = "raj.mukut@nokia.com";
+            //string Password = "Data@9905";
+            //string Filepath = @"C:\Projects\Project Tracking V2.1.xlsx";
+            //string UploadFolder = "Shared Documents/ResolutionHUB/NewRequest";
+            //string newFolderName = "20220705";
+            ScriptSharePoint ssp = new ScriptSharePoint(SharePointSite, UserName, Password);
+            // ssp.CreateFolderandUploadFile(Filepath, UploadFolder, newFolderName);
+            ssp.UploadFileToSharePoint(fileBytes, Filepath, SharePointSite, "Shared Documents/ResolutionHUB/NewRequest");
+        }
+
+
+    public void UploadFileToSharePoint(byte[] fileBytes, string fileName, string siteUrl, string documentLibraryName)
+        {
+            // Replace the placeholders with your SharePoint site URL and credentials
+            //string username = "your_username";
+
+            // Create a new SharePoint client context
+            using (ClientContext context = new ClientContext(sharepointsite))
+            {
+                // Provide the credentials
+                context.Credentials = new SharePointOnlineCredentials(username, securePassword);
+
+                // Get the SharePoint web and document library
+                Web web = context.Web;
+                List documentLibrary = web.Lists.GetByTitle(documentLibraryName);
+
+                // Prepare the file creation information
+                FileCreationInformation fileCreationInfo = new FileCreationInformation
+                {
+                    Content = fileBytes,
+                    Url = fileName,
+                    Overwrite = true
+                };
+
+                // Upload the file to SharePoint
+                Microsoft.SharePoint.Client.File uploadedFile = documentLibrary.RootFolder.Files.Add(fileCreationInfo);
+
+                // Execute the upload operation
+                context.ExecuteQuery();
+            }
+        }

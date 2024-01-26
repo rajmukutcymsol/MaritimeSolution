@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{98DB6A09-F7C2-4C06-AFE9-E813A8AA1D9D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TicketingTool.Models</RootNamespace>
+    <AssemblyName>TicketingTool.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Client.Policy">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.Office.Client.Policy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Client.TranslationServices">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.Office.Client.TranslationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.SharePoint.Tools">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.Office.SharePoint.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Online.SharePoint.Client.Tenant">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.Online.SharePoint.Client.Tenant.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectServer.Client">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.ProjectServer.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.DocumentManagement">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.DocumentManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Publishing">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.Publishing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search.Applications">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.Search.Applications.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Taxonomy">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.Taxonomy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.UserProfiles">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.UserProfiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.WorkflowServices">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TicketingTool.Models">
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Models\bin\Debug\TicketingTool.Models.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Common\BooleanDropdown.cs" />
+    <Compile Include="Common\CommonDbResponse.cs" />
+    <Compile Include="Constant\Procedures.cs" />
+    <Compile Include="Constant\SpType.cs" />
+    <Compile Include="Masters\Auth.cs" />
+    <Compile Include="Masters\CargoStatusOfDay.cs" />
+    <Compile Include="Masters\cargo_status_of_day_remarks.cs" />
+    <Compile Include="Masters\Marks_and_nos.cs" />
+    <Compile Include="Masters\master_cargo_type.cs" />
+    <Compile Include="Masters\master_category.cs" />
+    <Compile Include="Masters\master_City.cs" />
+    <Compile Include="Masters\master_cli_ui.cs" />
+    <Compile Include="Masters\master_common_mstr.cs" />
+    <Compile Include="Masters\master_Country.cs" />
+    <Compile Include="Masters\master_customer.cs" />
+    <Compile Include="Masters\master_daily_report.cs" />
+    <Compile Include="Masters\master_developer.cs" />
+    <Compile Include="Masters\master_discharge_port.cs" />
+    <Compile Include="Masters\master_domain.cs" />
+    <Compile Include="Masters\master_efficiency.cs" />
+    <Compile Include="Masters\master_email_group.cs" />
+    <Compile Include="Masters\master_FC_Stevedore_Operations.cs" />
+    <Compile Include="Masters\master_function.cs" />
+    <Compile Include="Masters\master_function_level.cs" />
+    <Compile Include="Masters\master_inbound_manifest.cs" />
+    <Compile Include="Masters\master_inbound_requirement.cs" />
+    <Compile Include="Masters\master_menu.cs" />
+    <Compile Include="Masters\master_node_type.cs" />
+    <Compile Include="Masters\master_pic_information.cs" />
+    <Compile Include="Masters\master_priority.cs" />
+    <Compile Include="Masters\master_project.cs" />
+    <Compile Include="Masters\master_project_manager.cs" />
+    <Compile Include="Masters\master_quantity_cargo.cs" />
+    <Compile Include="Masters\master_region.cs" />
+    <Compile Include="Masters\master_requirement.cs" />
+    <Compile Include="Masters\master_resolution_category.cs" />
+    <Compile Include="Masters\master_response_time.cs" />
+    <Compile Include="Masters\master_res_cat_1.cs" />
+    <Compile Include="Masters\master_res_cat_2.cs" />
+    <Compile Include="Masters\master_res_cat_3.cs" />
+    <Compile Include="Masters\master_role.cs" />
+    <Compile Include="Masters\master_sdlc.cs" />
+    <Compile Include="Masters\master_solution_architect.cs" />
+    <Compile Include="Masters\master_State.cs" />
+    <Compile Include="Masters\master_status.cs" />
+    <Compile Include="Masters\master_technology.cs" />
+    <Compile Include="Masters\master_tester.cs" />
+    <Compile Include="Masters\master_tool.cs" />
+    <Compile Include="Masters\master_update_history.cs" />
+    <Compile Include="Masters\master_usecase.cs" />
+    <Compile Include="Masters\master_vendor.cs" />
+    <Compile Include="Masters\master_vessel.cs" />
+    <Compile Include="Masters\message_update_status.cs" />
+    <Compile Include="Masters\Quantity_and_Kind_of_cargo .cs" />
+    <Compile Include="Masters\sof.cs" />
+    <Compile Include="Models\ChatRecord.cs" />
+    <Compile Include="Models\project_requirement.cs" />
+    <Compile Include="Models\project_status.cs" />
+    <Compile Include="Models\project_technology.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\vmProjectRequirement.cs" />
+    <Compile Include="ViewModel\vm_ArrivalCondition.cs" />
+    <Compile Include="ViewModel\vm_change_request.cs" />
+    <Compile Include="ViewModel\vm_checker.cs" />
+    <Compile Include="ViewModel\vm_dashboard_data_count.cs" />
+    <Compile Include="ViewModel\vm_employee.cs" />
+    <Compile Include="ViewModel\vm_HoldsInfo.cs" />
+    <Compile Include="ViewModel\vm_issue_list.cs" />
+    <Compile Include="ViewModel\vm_location.cs" />
+    <Compile Include="ViewModel\vm_master.cs" />
+    <Compile Include="ViewModel\vm_menu.cs" />
+    <Compile Include="ViewModel\vm_menu_mapping.cs" />
+    <Compile Include="ViewModel\vm_new_request.cs" />
+    <Compile Include="ViewModel\vm_Owners.cs" />
+    <Compile Include="ViewModel\vm_passord_varify_request_parameter.cs" />
+    <Compile Include="ViewModel\vm_Plan_Info_Stowge.cs" />
+    <Compile Include="ViewModel\vm_project_region_mapping.cs" />
+    <Compile Include="ViewModel\vm_Receiver.cs" />
+    <Compile Include="ViewModel\vm_Report_InBound_Details.cs" />
+    <Compile Include="ViewModel\vm_Role.cs" />
+    <Compile Include="ViewModel\vm_RoleMenu.cs" />
+    <Compile Include="ViewModel\vm_search.cs" />
+    <Compile Include="ViewModel\vm_shipper.cs" />
+    <Compile Include="ViewModel\vm_shipping.cs" />
+    <Compile Include="ViewModel\vm_stevedore.cs" />
+    <Compile Include="ViewModel\vm_StowagePlan.cs" />
+    <Compile Include="ViewModel\vm_Stowage_Main_Info.cs" />
+    <Compile Include="ViewModel\vm_Stowage_Plan_Info.cs" />
+    <Compile Include="ViewModel\vm_Surveyor.cs" />
+    <Compile Include="ViewModel\vm_user_authentication.cs" />
+    <Compile Include="ViewModel\vm_user_detail.cs" />
+    <Compile Include="ViewModel\vm_User_Projects_Mapping.cs" />
+    <Compile Include="ViewModel\vm_user_registration.cs" />
+    <Compile Include="ViewModel\vw_GroupEmailMapping.cs" />
+    <Compile Include="ViewModel\vw_project_customers_mapping.cs" />
+    <Compile Include="ViewModel\vw_project_tools_mapping.cs" />
+    <Compile Include="ViewModel\vw_ResCatMapping.cs" />
+    <Compile Include="ViewModel\vw_tool_usecases_mapping.cs" />
+    <Compile Include="ViewModel\vw_user_projects_mapping.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Microsoft.Office.Client.Policy.dll" />
+    <Content Include="bin\Debug\Microsoft.Office.Client.TranslationServices.dll" />
+    <Content Include="bin\Debug\Microsoft.Office.SharePoint.Tools.dll" />
+    <Content Include="bin\Debug\Microsoft.Online.SharePoint.Client.Tenant.dll" />
+    <Content Include="bin\Debug\Microsoft.ProjectServer.Client.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.DocumentManagement.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.Publishing.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.Runtime.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.Search.Applications.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.Search.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.Taxonomy.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.UserProfiles.dll" />
+    <Content Include="bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll" />
+    <Content Include="bin\Debug\TicketingTool.Models.dll" />
+    <Content Include="bin\Debug\TicketingTool.Models.pdb" />
+    <Content Include="bin\Release\Microsoft.Office.Client.Policy.dll" />
+    <Content Include="bin\Release\Microsoft.Office.Client.TranslationServices.dll" />
+    <Content Include="bin\Release\Microsoft.Office.SharePoint.Tools.dll" />
+    <Content Include="bin\Release\Microsoft.Online.SharePoint.Client.Tenant.dll" />
+    <Content Include="bin\Release\Microsoft.ProjectServer.Client.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.DocumentManagement.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.Publishing.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.Runtime.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.Search.Applications.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.Search.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.Taxonomy.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.UserProfiles.dll" />
+    <Content Include="bin\Release\Microsoft.SharePoint.Client.WorkflowServices.dll" />
+    <Content Include="bin\Release\TicketingTool.Models.dll" />
+    <Content Include="bin\Release\TicketingTool.Models.pdb" />
+    <Content Include="bin\x86\Debug\Microsoft.Office.Client.Policy.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.Office.Client.TranslationServices.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.Office.SharePoint.Tools.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.Online.SharePoint.Client.Tenant.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.ProjectServer.Client.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.DocumentManagement.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.Publishing.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.Runtime.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.Search.Applications.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.Search.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.Taxonomy.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.UserProfiles.dll" />
+    <Content Include="bin\x86\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll" />
+    <Content Include="bin\x86\Debug\TicketingTool.Models.dll" />
+    <Content Include="bin\x86\Debug\TicketingTool.Models.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

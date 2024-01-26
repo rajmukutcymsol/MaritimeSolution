@@ -1,0 +1,89 @@
+﻿@model TicketingTool.Services.Concrete.Mapping.ToolUseCasesMapping
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Map Tools with Use Cases</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Project</label>
+                    @Html.DropDownList("projectid", new SelectList(ViewBag.ProjectList, "id", "project_name"), new { @class = "form-control input-sm", @id = "projectid" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Tool</label>
+                    <select id="toolid" name="toolid" class="form-control input-sm"></select>
+                    @*@Html.DropDownList("toolid", new SelectList(ViewBag.ToolList, "id", "tool_name"), new { @class = "form-control input-sm", @id = "toolid" })*@
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select User Cases</label>
+                    @Html.DropDownList("usecaseid", new SelectList(ViewBag.UsecaseList, "id", "use_case_name"), new { @class = "form-control input-sm", @id = "usecaseid" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Vender</label>
+                    @Html.DropDownList("venderid", new SelectList(ViewBag.VenderList, "id", "vendor_name"), new { @class = "form-control input-sm", @id = "venderid" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Technology</label>
+                    @Html.DropDownList("technologyid", new SelectList(ViewBag.TechnologyList, "id", "technology_name"), new { @class = "form-control input-sm", @id = "technologyid" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Node Type</label>
+                    @Html.DropDownList("nodetypeid", new SelectList(ViewBag.NodeType, "id", "node_type_name"), new { @class = "form-control input-sm", @id = "nodetypeid" })
+                </div>
+                <div class="col-md-2">
+                    <a href="#" style="margin-top:24px;" class="btn btn-primary btn-sm btnsave" id="btnSave">
+                        Add
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Tools to Use Case</h3>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover table-striped" id="tbl_UseCase">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            <th>Action</th>
+                            <th>Project</th>
+                            <th>Tool</th>
+                            <th>Use Case</th>
+                            <th>Vender</th>
+                            <th>Technology</th>
+                            <th>Node Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#usecaseid").chosen();
+            $("#venderid").chosen();
+            $("#technologyid").chosen();
+            $("#nodetypeid").chosen();
+        });
+    </script>
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/mapping/ToolUseCaseMapping.js"></script>
+}

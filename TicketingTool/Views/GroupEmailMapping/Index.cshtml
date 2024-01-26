@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Map Group with Users Email</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Group</label>
+                    @Html.DropDownList("GroupName", new SelectList(ViewBag.GroupNameList, "id", "group_name"), new { @class = "form-control input-sm", @id = "group_id" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select User Name</label>
+                    @Html.DropDownList("UserName", new SelectList(ViewBag.EmployeeList, "employee_id", "employee_name"), new { @class = "form-control input-sm", @id = "employee_id" })
+                </div>
+                <div class="col-md-2">
+                    <a href="#" style="margin-top:24px;" class="btn btn-primary btn-sm btnsave" id="btnSave">
+                        Add
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Group Email Mapping</h3>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover table-striped" id="tbl_GroupEmail">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            <th>Action</th>
+                            <th>Group Name</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            $("#employee_id").chosen();
+
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+   
+
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/mapping/GroupEmailMapping.js"></script>
+
+}
+

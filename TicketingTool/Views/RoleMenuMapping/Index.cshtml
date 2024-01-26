@@ -1,0 +1,86 @@
+﻿@model TicketingTool.Models.ViewModel.vm_menu_mapping
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var sno = 0;
+}
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Map Rolewise Menu</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="exampleInputtext1">Role</label>
+                    @Html.DropDownList("Role", new SelectList(Model.roles, "id", "role_name"), new { @class = "form-control input-sm", @id = "role" })
+                    
+                </div>
+                <div class="col-md-2">
+                    <a href="#" style="margin-top:24px;" class="btn btn-primary btn-sm btnsave" id="btnSave">
+                        Save
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Menu List</h3>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th>S.No#</th>
+                        <th>Menu</th>
+                        <th style="text-align:center;">Select</th>
+                    </tr>
+                </thead>
+                <tbody id="tblMenu">
+                    @foreach (var item in Model.master_Menu)
+                    {
+                        var isSubLevelExist = Model.master_Menu.Where(x => x.parent_id == item.id).ToList();
+                        sno = sno + 1;
+
+                        if (item.parent_id == null)
+                        {
+                            <tr style="background-color: #cdd0d3">
+                                <td><input type="hidden" value="@item.id" />@sno</td>
+                                <td><i class="@item.menu_icon"></i> &nbsp; @item.menu_name</td>
+                                <td style="text-align:center;">
+                                    <input type="checkbox" class="minimal" id="@item.id">
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td><input type="hidden" value="@item.id" />@sno</td>
+                                <td><i class="@item.menu_icon"></i> &nbsp; @item.menu_name</td>
+                                <td style="text-align:center;">
+                                    <input type="checkbox" class="minimal" id="@item.id">
+                                </td>
+                            </tr>
+                        }
+
+                        
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/mapping/RoleMenuMapping.js"></script>
+}
+
+
+

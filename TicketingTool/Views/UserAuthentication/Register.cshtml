@@ -1,0 +1,138 @@
+﻿@model TicketingTool.Models.ViewModel.vm_user_registration
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style>
+    .login-box, .register-box {
+        width: 800px !important;
+        margin: 7% auto;
+        margin-top: 0 !important;
+    }
+
+    .login-logo, .register-logo {
+        font-size: 35px;
+        text-align: center;
+        margin-bottom: 0 !important;
+        font-weight: 300;
+    }
+
+    .login-box-body, .register-box-body {
+        background: #fff;
+        padding: 10px;
+        border-top: 0;
+        color: #666;
+    }
+</style>
+
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><img src="~/Content/dist/img/thai-maritime-logo.png" height="90px;" /></a>
+    </div>
+    <div class="login-box-body">
+
+        <div class="box box-primary box-solid">
+            <div class="box-header with-border" style="background-color: #90a1c3!important">
+                <h3 class="box-title">New User Registration</h3>
+
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="exampleInputEmail1">Employee Code/User Name</label>
+                        @Html.EditorFor(model => model.employee_id, new { htmlAttributes = new { @class = "form-control", @id = "employee_id" } })
+                    </div>
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="exampleInputEmail1">Name </label>
+                        @Html.EditorFor(model => model.display_name, new { htmlAttributes = new { @class = "form-control", @id = "display_name" } })
+                    </div>
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="exampleInputEmail1">User Role</label>
+                        @Html.DropDownListFor(model => model.user_role, new SelectList(ViewBag.roles, "Key", "Value"), "Select", new { @class = "form-control input-sm", @id = "user_role" })
+                    </div>
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="exampleInputEmail1">Email Address </label>
+                        @Html.EditorFor(model => model.email_address, new { htmlAttributes = new { @class = "form-control", @id = "email_address" } })
+                    </div>
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="exampleInputEmail1">Mobile </label>
+                        @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control", @id = "mobile" } })
+                    </div>
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="exampleInputEmail1">Password <span></span>  </label>
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @id = "password", @type = "Password" } })
+
+                    </div>
+                    @*<div class="form-group has-feedback col-md-6">
+            <label for="exampleInputEmail1">Manager</label>
+            @Html.EditorFor(model => model.manager_name, new { htmlAttributes = new { @class = "form-control", @id = "manager_name" } })
+        </div>*@
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="exampleInputEmail1">Location </label>
+                        @Html.DropDownListFor(model => model.location, new SelectList(ViewBag.location, "Key", "Value"), "Select", new { @class = "form-control input-sm", @id = "location" })
+                    </div>
+
+                    @*<div class="form-group has-feedback col-md-6">
+            <label for="exampleInputEmail1">Department </label>
+            @Html.EditorFor(model => model.department, new { htmlAttributes = new { @class = "form-control",  @id = "department" } })
+        </div>*@
+
+                    @*<div class="form-group has-feedback col-md-6">
+            <label for="exampleInputtext1" class="form-check-label">Projects</label>
+            @{
+                var projectList = ViewBag.Items as List<TicketingTool.Models.Masters.master_project>;
+            }
+            <br />
+            @Html.DropDownList("project_name", new SelectList(projectList, "id", "project_name"), new { @class = "form-control input-sm", @id = "project_name" })
+        </div>*@
+
+
+                    @*<div class="form-group has-feedback col-md-6">
+            <button type="button" id="btnvarify" class="btn btn-primary btn-flat" style="margin-top:25px;"> <i class="fa fa-info"></i> &nbsp; Verify</button>
+        </div>*@
+
+
+                </div>
+                @*<span class="text-center">Please provide you network password here. This is to validate with the Nokia active directory.</span>*@
+
+
+                <div class="social-auth-links text-center">
+                    <button type="button" id="btnRegister" class="btn btn-block btn-social btn-facebook btn-flat" style="text-align:center;">
+                        <i class="fa fa-angle-double-right"></i> Register
+                    </button>
+                </div>
+
+
+
+                @if (@ViewBag.Message != null)
+                {
+                    <div id="MessageDiv" style="text-align:center;color:red;">
+                        @ViewBag.Message
+                    </div>
+                }
+            </div>
+            <div class="box-footer">
+                <span>Your request will be submiited to administrator for further approval. Please contact him to get approval.</span><br /><br />
+                <span class="text-center">Have an account? <a href="@Url.Action("AuthenticateUser","UserAuthentication")">Log in</a></span>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/user_authentication/register.js"></script>
+}
+
+

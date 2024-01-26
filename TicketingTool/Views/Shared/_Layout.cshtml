@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GLOBAL NEEDS LOCAL SOLUTIONS</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="~/Content/bower_components/Ionicons/css/ionicons.min.css" />
+    <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="~/Content/dist/img/favicon.png">
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+    <script src="~/Scripts/chosen.jquery.js"></script>
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <style>
+        .modal-header {
+            background-color: #124191 !important;
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body class="skin-blue sidebar-mini sidebar-collapse">
+    <div class="spinner">
+        <div class="center-div">
+            <div class="inner-div">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="wrapper">
+        @{Html.RenderPartial("~/Views/Shared/PartialView/NavBarHeader.cshtml");}
+
+        @{Html.RenderAction("SideBarMenu", "Common");}
+       
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        @{Html.RenderPartial("~/Views/Shared/PartialView/Footer.cshtml");}
+
+        @*@{Html.RenderPartial("~/Views/Shared/PartialView/Toolbox.cshtml");}*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/ThemeChanges")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿@model TicketingTool.Models.ViewModel.vm_master
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+
+<section class="content-header">
+    <h1>
+        Manage
+        <small>Common Master</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+        <li class="active">Common Master</li>
+    </ol>
+</section>
+
+<section class="content">
+    <input type="hidden" id="id" />
+    <div class="box box-primary box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Common Master List</h3>
+            <div class="box-tools pull-right">
+                <a href="@Url.Action("Create","CommonMaster")" class="btn btn-success btn-sm btnsave" id="btnSave">
+                    Create New
+                </a>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover table-striped" id="tbl_cliui">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            <th>Action</th>
+                            <th>Category Name</th>
+                            <th>Company Name</th>
+                            <th>Person Incharge</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+@section scripts{
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/settings/CommomMaster.js"></script>
+
+}

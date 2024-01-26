@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4C051EB-ED3A-4CD3-8C5D-DB365818A189}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TicketingTool.Services</RootNamespace>
+    <AssemblyName>TicketingTool.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Client.Policy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.Office.Client.Policy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Client.TranslationServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.Office.Client.TranslationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.SharePoint.Tools, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.Office.SharePoint.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Online.SharePoint.Client.Tenant, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.Online.SharePoint.Client.Tenant.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectServer.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.ProjectServer.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.DocumentManagement, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.DocumentManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Publishing, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.Publishing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search.Applications, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.Search.Applications.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Taxonomy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.Taxonomy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.UserProfiles, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.UserProfiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.WorkflowServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Marritime Solutions\maritime-solution\TicketingTool.Services\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TicketingTool.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TicketingTool.Data\bin\Debug\TicketingTool.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="TicketingTool.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TicketingTool.Models\bin\Debug\TicketingTool.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="TicketingTool.Utilities">
+      <HintPath>..\TicketingTool.Utilities\bin\Debug\TicketingTool.Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\Authentication\IUserAuthenticationRepository.cs" />
+    <Compile Include="Abstract\Dashboard\IDashboardRepository.cs" />
+    <Compile Include="Abstract\Mapping\IGroupEmailRepositoryMapping.cs" />
+    <Compile Include="Abstract\Mapping\IProjectCustomersMapping.cs" />
+    <Compile Include="Abstract\Mapping\IProjectsToolsMapping.cs" />
+    <Compile Include="Abstract\Mapping\IResCatMapping.cs" />
+    <Compile Include="Abstract\Mapping\IRoleMenuMapping.cs" />
+    <Compile Include="Abstract\Mapping\IToolUseCasesMapping.cs" />
+    <Compile Include="Abstract\Mapping\IUserProjectsMapping.cs" />
+    <Compile Include="Abstract\Master\ICargoTypeRepository.cs" />
+    <Compile Include="Abstract\Master\ICategoryRepository.cs" />
+    <Compile Include="Abstract\Master\ICityRepository.cs" />
+    <Compile Include="Abstract\Master\ICLIUIRepository.cs" />
+    <Compile Include="Abstract\Master\ICommonMasterRepository.cs" />
+    <Compile Include="Abstract\Master\ICountryRepository.cs" />
+    <Compile Include="Abstract\Master\ICustomerRepository.cs" />
+    <Compile Include="Abstract\Master\IDeveloperRepository.cs" />
+    <Compile Include="Abstract\Master\IDischargePortRipository.cs" />
+    <Compile Include="Abstract\Master\IDomainRepository.cs" />
+    <Compile Include="Abstract\Master\IEfficiencyRepository.cs" />
+    <Compile Include="Abstract\Master\IFunctionLevelRepository.cs" />
+    <Compile Include="Abstract\Master\IFunctionRepository.cs" />
+    <Compile Include="Abstract\Master\IGroupEmailRepository.cs" />
+    <Compile Include="Abstract\Master\IMarksAndNosRepository.cs" />
+    <Compile Include="Abstract\Master\IMasterRepository.cs" />
+    <Compile Include="Abstract\Master\INodeTypeRepository.cs" />
+    <Compile Include="Abstract\Master\IPriorityRepository.cs" />
+    <Compile Include="Abstract\Master\IProjectManagerRepository.cs" />
+    <Compile Include="Abstract\Master\IProjectRepository.cs" />
+    <Compile Include="Abstract\Master\IQttRepository.cs" />
+    <Compile Include="Abstract\Master\IQuantityandKindofcargoname.cs" />
+    <Compile Include="Abstract\Master\IRegionRepository.cs" />
+    <Compile Include="Abstract\Master\IResCat1Repository.cs" />
+    <Compile Include="Abstract\Master\IResCat2Repository.cs" />
+    <Compile Include="Abstract\Master\IResCat3Repository.cs" />
+    <Compile Include="Abstract\Master\IResoluionCategoryRepository.cs" />
+    <Compile Include="Abstract\Master\ISDLCRepository.cs" />
+    <Compile Include="Abstract\Master\ISolutionArchitectRepository.cs" />
+    <Compile Include="Abstract\Master\ISolutionToolRepository.cs" />
+    <Compile Include="Abstract\Master\IStateRepository.cs" />
+    <Compile Include="Abstract\Master\IStatusRepository.cs" />
+    <Compile Include="Abstract\Master\ITechnologyRepository.cs" />
+    <Compile Include="Abstract\Master\ITesterRepository.cs" />
+    <Compile Include="Abstract\Master\IUseCaseRepository.cs" />
+    <Compile Include="Abstract\Master\IVendorRepository.cs" />
+    <Compile Include="Abstract\Master\IVesselRepository.cs" />
+    <Compile Include="Abstract\Requirement\IInboundReportsRepository.cs" />
+    <Compile Include="Abstract\Requirement\IInboundRepository.cs" />
+    <Compile Include="Abstract\Requirement\IRequirementRepository.cs" />
+    <Compile Include="Abstract\Role\IRoleRepository.cs" />
+    <Compile Include="Abstract\Role\IRoleRightsRepository.cs" />
+    <Compile Include="Abstract\User\IUserRepository.cs" />
+    <Compile Include="Concrete\Authentication\UserAuthenticationRepository.cs" />
+    <Compile Include="Concrete\Dashboard\DashboardRepository.cs" />
+    <Compile Include="Concrete\Mapping\GroupEmailMapping.cs" />
+    <Compile Include="Concrete\Mapping\IProjectRegionMapping.cs" />
+    <Compile Include="Concrete\Mapping\ProjectCustomersMapping.cs" />
+    <Compile Include="Concrete\Mapping\ProjectRegionMapping.cs" />
+    <Compile Include="Concrete\Mapping\ProjectToolsMapping.cs" />
+    <Compile Include="Concrete\Mapping\ResCatMapping.cs" />
+    <Compile Include="Concrete\Mapping\RoleMenuMapping.cs" />
+    <Compile Include="Concrete\Mapping\ToolUseCasesMapping.cs" />
+    <Compile Include="Concrete\Mapping\UserProjectsMapping.cs" />
+    <Compile Include="Concrete\Master\CargoTypeRepository.cs" />
+    <Compile Include="Concrete\Master\CategoryRepository.cs" />
+    <Compile Include="Concrete\Master\CityRepository.cs" />
+    <Compile Include="Concrete\Master\CLIUIRepository.cs" />
+    <Compile Include="Concrete\Master\CommonMasterRepository.cs" />
+    <Compile Include="Concrete\Master\CountryRepository.cs" />
+    <Compile Include="Concrete\Master\CustomerRepository.cs" />
+    <Compile Include="Concrete\Master\DeveloperRepository.cs" />
+    <Compile Include="Concrete\Master\DischargePortRepository.cs" />
+    <Compile Include="Concrete\Master\DomainRepository.cs" />
+    <Compile Include="Concrete\Master\EfficiencyRepository.cs" />
+    <Compile Include="Concrete\Master\FunctionLevelRepository.cs" />
+    <Compile Include="Concrete\Master\FunctionRepository.cs" />
+    <Compile Include="Concrete\Master\GroupEmailRepository.cs" />
+    <Compile Include="Concrete\Master\MarksAndNosRepository.cs" />
+    <Compile Include="Concrete\Master\MasterRepository.cs" />
+    <Compile Include="Concrete\Master\NodeTypeRepository.cs" />
+    <Compile Include="Concrete\Master\PriorityRepository.cs" />
+    <Compile Include="Concrete\Master\ProjectManagerRepository.cs" />
+    <Compile Include="Concrete\Master\ProjectRepository.cs" />
+    <Compile Include="Concrete\Master\QttRepository.cs" />
+    <Compile Include="Concrete\Master\QuantityandKindofcargoRepository.cs" />
+    <Compile Include="Concrete\Master\RegionRepository.cs" />
+    <Compile Include="Concrete\Master\ResCat1Repository.cs" />
+    <Compile Include="Concrete\Master\ResCat2Repository.cs" />
+    <Compile Include="Concrete\Master\ResCat3Repository.cs" />
+    <Compile Include="Concrete\Master\ResolutionCategoryRepository.cs" />
+    <Compile Include="Concrete\Master\SDLCRepository.cs" />
+    <Compile Include="Concrete\Master\SolutionArchitectRepository.cs" />
+    <Compile Include="Concrete\Master\SolutionToolRepository.cs" />
+    <Compile Include="Concrete\Master\StateRepository.cs" />
+    <Compile Include="Concrete\Master\StatusRepository.cs" />
+    <Compile Include="Concrete\Master\TechnologyRepository.cs" />
+    <Compile Include="Concrete\Master\TesterRepository.cs" />
+    <Compile Include="Concrete\Master\UseCaseRepository.cs" />
+    <Compile Include="Concrete\Master\VendorRepository.cs" />
+    <Compile Include="Concrete\Master\VesselDataRepository.cs" />
+    <Compile Include="Concrete\Requirement\InBoundReportsRepository.cs" />
+    <Compile Include="Concrete\Requirement\InBoundRepository.cs" />
+    <Compile Include="Concrete\Requirement\RequirementRepository.cs" />
+    <Compile Include="Concrete\RoleRepository\RoleRepository.cs" />
+    <Compile Include="Concrete\RoleRepository\RoleRights.cs" />
+    <Compile Include="Concrete\User\UserRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

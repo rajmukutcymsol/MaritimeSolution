@@ -1,0 +1,48 @@
+﻿
+@model IEnumerable<TicketingTool.Models.ViewModel.vm_dashboard_data_count>
+    <style>
+        .info-box-icons {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 2px;
+            display: block;
+            float: left;
+            height: 58px;
+            width: 90px;
+            text-align: center;
+            font-size: 45px;
+            line-height: 58px;
+            background: rgba(0,0,0,0.2);
+        }
+        .info-boxs {
+            display: block;
+            min-height: 58px;
+            background: #fff;
+            width: 100%;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            margin-bottom: 8px;
+        }
+    </style>
+<div class="col-lg-4 col-md-4 col-sm-12 col-divider">
+    <h3>Issue/Problem Request</h3>
+    <hr>
+    <div class="info-boxs">
+        <span class="info-box-icons bg-yellow"><i class="fa fa-bars"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Total</span>
+            <span class="info-box-number">@ViewBag.irReqCount</span>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="info-boxs">
+            <span class="info-box-icons @item.background_class"><i class="@item.icon_class"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">@item.requirement_type</span>
+                <span class="info-box-number">@item.no_of_count</span>
+            </div>
+        </div>
+    }
+</div>

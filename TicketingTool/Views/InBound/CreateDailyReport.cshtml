@@ -1,0 +1,2173 @@
+﻿@model TicketingTool.Models.ViewModel.vm_ArrivalCondition
+
+@{
+    ViewBag.Title = "CreateDailyReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #95d6a9;
+        text-align: center; /* Center the text in header cells */
+    }
+</style>
+<section class="content-header">
+    <h1>
+        Daily
+        <small>Report </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-gear"></i> InBound</a></li>
+        <li class="active">Daily Report</li>
+    </ol>
+</section>
+
+<section class="content">
+    <input type="text" id="id" style="display:none" />
+
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Daily Report</h3>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-sm btn-success" id="btnPrint">Print</a>
+                <a href="#" class="btn btn-sm btn-success btnApprove" id="btnApprove">Verify & Approve</a>
+                <a href="#" class="btn btn-sm btn-success" id="btnsave">Save</a>
+                <a href="@Url.Action("Index","InBound")" class="btn btn-sm btn-danger btnCancel" id="btnCancels">Cancel</a>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Date On<span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input class="form-control input-sm" id="report_date" placeholder="DD/MM/YYYY">
+                        <select ID="HH_report_date" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select>
+                        <select ID="MM_report_date" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Port Call ID <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value=@ViewBag.results.auto_id readonly="readonly" id="auto_id" placeholder="Auto ID">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Vessel Name<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.results.vessel_name" readonly="readonly" id="vessel_name">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Flag<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.results.flags" readonly="readonly" id="flags">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">At Port<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.results.discharge_port_name" readonly="readonly" id="discharge_port_name">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Description of Cargo   <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" readonly="readonly" id="description_of_cargo">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">lat<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="@ViewBag.results.lat" id="lat" placeholder="lat">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Long<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.results.longt" readonly="readonly" id="longt">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Weather<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="weather">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Daily Discharge Cargo<span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input class="form-control input-sm" id="from_daily_discharge_cargo" placeholder="DD/MM/YYYY">
+                        <select ID="from_HH_daily_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select>
+                        <select ID="from_MM_daily_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1"> Up To<span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input class="form-control input-sm" id="to_daily_discharge_cargo" placeholder="DD/MM/YYYY">
+                        <select ID="to_HH_daily_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select>
+                        <select ID="to_MM_daily_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                Cargo Status of the day
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="row" style="display:none">
+                <div class="form-group col-md-4">
+
+                    <div style="display: flex;">
+                        <div class="radio" style="margin-top: -5px;">
+                            <label>
+                                <input type="radio" name="cargoStatus" id="daytime" class="required_box" checked>
+                                Daytime
+                            </label>
+                        </div>
+                        <div class="radio" style="margin-left: 10px;">
+                            <label>
+                                <input type="radio" name="cargoStatus" id="firstHN" class="required_box">
+                                1st. H/N
+                            </label>
+                        </div>
+                        <div class="radio" style="margin-left: 10px;">
+                            <label>
+                                <input type="radio" name="cargoStatus" id="secondHN" class="required_box">
+                                2nd. H/N
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="display: flex;">
+                        <select ID="from_HH_cargo_status_daytime" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                        </select>
+                        <select ID="to_MM_cargo_status_daytime" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                        </select>
+                        <label for="exampleInputEmail1" style="margin-top: 5px;">&nbsp;-&nbsp;</label>
+                        <select ID="from_HH_cargo_status_first" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                        </select>
+                        <select ID="to_MM_cargo_status_first" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">Gang<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="gang">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">Select Holds<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("capacities", new SelectList(ViewBag.Capi, "Key", "Value"), new { @class = "form-control input-sm capacities", @id = "hold" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">Total<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="total_out">
+                </div>
+                <div class="form-group col-md-2" style="margin-top: 22px;">
+                    <div style="float:right">
+                        <a href="#" class="btn btn-sm btn-success mybtn"> Add</a>
+                        <a href="" class="btn btn-sm btn-success mybtn_Edit" id="myEditbtn"> Update</a>
+                        <a href="" class="btn btn-sm btn-danger mybtn_Edit_Cancel" id="myEditCancel"> Cancel</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="box-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>CARGO</th>
+                                    <th></th>
+                                    <th rowspan="2">Gang</th>
+                                    <th><label id="Hold1">@ViewBag.allInfo.Hold1 </label> </th>
+                                    <th><label id="Hold2">@ViewBag.allInfo.Hold2</label></th>
+                                    <th><label id="Hold3">@ViewBag.allInfo.Hold3</label></th>
+                                    <th><label id="Hold4">@ViewBag.allInfo.Hold4</label></th>
+                                    <th><label id="Hold5">@ViewBag.allInfo.Hold5</label></th>
+                                    <th><label id="Hold5">@ViewBag.allInfo.TotalHold</label></th>
+                                </tr>
+                                <tr>
+                                    <th>DATE/HATCH NO.</th>
+                                    <th></th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background-color: #c2c3ed;">
+                                <tr>
+                                    <td>Daytime</td>
+                                    <td>
+                                        <div style="display: flex;">
+                                            <select ID="from_HH_daytime" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>HH</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                            </select>
+                                            <select ID="from_MM_daytime" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>MM</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                                <option value="37">37</option>
+                                                <option value="38">38</option>
+                                                <option value="39">39</option>
+                                                <option value="40">40</option>
+                                                <option value="41">41</option>
+                                                <option value="42">42</option>
+                                                <option value="43">43</option>
+                                                <option value="44">44</option>
+                                                <option value="45">45</option>
+                                                <option value="46">46</option>
+                                                <option value="47">47</option>
+                                                <option value="48">48</option>
+                                                <option value="49">49</option>
+                                                <option value="50">50</option>
+                                                <option value="51">51</option>
+                                                <option value="52">52</option>
+                                                <option value="53">53</option>
+                                                <option value="54">54</option>
+                                                <option value="55">55</option>
+                                                <option value="56">56</option>
+                                                <option value="57">57</option>
+                                                <option value="58">58</option>
+                                                <option value="59">59</option>
+                                            </select>
+                                            <label for="exampleInputEmail1" style="margin-top: 5px;">&nbsp;-&nbsp;</label>
+                                            <select ID="to_HH_daytime" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>HH</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                            </select>
+                                            <select ID="to_MM_daytime" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>MM</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                                <option value="37">37</option>
+                                                <option value="38">38</option>
+                                                <option value="39">39</option>
+                                                <option value="40">40</option>
+                                                <option value="41">41</option>
+                                                <option value="42">42</option>
+                                                <option value="43">43</option>
+                                                <option value="44">44</option>
+                                                <option value="45">45</option>
+                                                <option value="46">46</option>
+                                                <option value="47">47</option>
+                                                <option value="48">48</option>
+                                                <option value="49">49</option>
+                                                <option value="50">50</option>
+                                                <option value="51">51</option>
+                                                <option value="52">52</option>
+                                                <option value="53">53</option>
+                                                <option value="54">54</option>
+                                                <option value="55">55</option>
+                                                <option value="56">56</option>
+                                                <option value="57">57</option>
+                                                <option value="58">58</option>
+                                                <option value="59">59</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td> <input type="text" class="form-control input-sm" id="gang_daytime"></td>
+                                    <td><input type="text" class="form-control input-sm" id="daytime_hold1_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="daytime_hold2_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="daytime_hold3_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="daytime_hold4_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="daytime_hold5_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="daytime_total_out"></td>
+                                </tr>
+                                <tr>
+                                    <td>1st. H/N</td>
+                                    <td>
+                                        <div style="display: flex;">
+                                            <select ID="from_HH_first" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>HH</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                            </select>
+                                            <select ID="from_MM_first" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>MM</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                                <option value="37">37</option>
+                                                <option value="38">38</option>
+                                                <option value="39">39</option>
+                                                <option value="40">40</option>
+                                                <option value="41">41</option>
+                                                <option value="42">42</option>
+                                                <option value="43">43</option>
+                                                <option value="44">44</option>
+                                                <option value="45">45</option>
+                                                <option value="46">46</option>
+                                                <option value="47">47</option>
+                                                <option value="48">48</option>
+                                                <option value="49">49</option>
+                                                <option value="50">50</option>
+                                                <option value="51">51</option>
+                                                <option value="52">52</option>
+                                                <option value="53">53</option>
+                                                <option value="54">54</option>
+                                                <option value="55">55</option>
+                                                <option value="56">56</option>
+                                                <option value="57">57</option>
+                                                <option value="58">58</option>
+                                                <option value="59">59</option>
+                                            </select>
+                                            <label for="exampleInputEmail1" style="margin-top: 5px;">&nbsp;-&nbsp;</label>
+                                            <select ID="to_HH_first" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>HH</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                            </select>
+                                            <select ID="to_MM_first" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>MM</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                                <option value="37">37</option>
+                                                <option value="38">38</option>
+                                                <option value="39">39</option>
+                                                <option value="40">40</option>
+                                                <option value="41">41</option>
+                                                <option value="42">42</option>
+                                                <option value="43">43</option>
+                                                <option value="44">44</option>
+                                                <option value="45">45</option>
+                                                <option value="46">46</option>
+                                                <option value="47">47</option>
+                                                <option value="48">48</option>
+                                                <option value="49">49</option>
+                                                <option value="50">50</option>
+                                                <option value="51">51</option>
+                                                <option value="52">52</option>
+                                                <option value="53">53</option>
+                                                <option value="54">54</option>
+                                                <option value="55">55</option>
+                                                <option value="56">56</option>
+                                                <option value="57">57</option>
+                                                <option value="58">58</option>
+                                                <option value="59">59</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="form-control input-sm" id="gang_first"></td>
+                                    <td><input type="text" class="form-control input-sm" id="first_hold1_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="first_hold2_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="first_hold3_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="first_hold4_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="first_hold5_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="first_total_out"></td>
+                                </tr>
+                                <tr>
+                                    <td>2nd. H/N</td>
+                                    <td>
+                                        <div style="display: flex;">
+                                            <select ID="from_HH_second" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>HH</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                            </select>
+                                            <select ID="from_MM_second" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>MM</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                                <option value="37">37</option>
+                                                <option value="38">38</option>
+                                                <option value="39">39</option>
+                                                <option value="40">40</option>
+                                                <option value="41">41</option>
+                                                <option value="42">42</option>
+                                                <option value="43">43</option>
+                                                <option value="44">44</option>
+                                                <option value="45">45</option>
+                                                <option value="46">46</option>
+                                                <option value="47">47</option>
+                                                <option value="48">48</option>
+                                                <option value="49">49</option>
+                                                <option value="50">50</option>
+                                                <option value="51">51</option>
+                                                <option value="52">52</option>
+                                                <option value="53">53</option>
+                                                <option value="54">54</option>
+                                                <option value="55">55</option>
+                                                <option value="56">56</option>
+                                                <option value="57">57</option>
+                                                <option value="58">58</option>
+                                                <option value="59">59</option>
+                                            </select>
+                                            <label for="exampleInputEmail1" style="margin-top: 5px;">&nbsp;-&nbsp;</label>
+                                            <select ID="to_HH_second" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>HH</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                            </select>
+                                            <select ID="to_MM_second" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                                <option value=''>MM</option>
+                                                <option value="0">00</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                                <option value="37">37</option>
+                                                <option value="38">38</option>
+                                                <option value="39">39</option>
+                                                <option value="40">40</option>
+                                                <option value="41">41</option>
+                                                <option value="42">42</option>
+                                                <option value="43">43</option>
+                                                <option value="44">44</option>
+                                                <option value="45">45</option>
+                                                <option value="46">46</option>
+                                                <option value="47">47</option>
+                                                <option value="48">48</option>
+                                                <option value="49">49</option>
+                                                <option value="50">50</option>
+                                                <option value="51">51</option>
+                                                <option value="52">52</option>
+                                                <option value="53">53</option>
+                                                <option value="54">54</option>
+                                                <option value="55">55</option>
+                                                <option value="56">56</option>
+                                                <option value="57">57</option>
+                                                <option value="58">58</option>
+                                                <option value="59">59</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="form-control input-sm" id="gang_second"></td>
+                                    <td><input type="text" class="form-control input-sm" id="second_hold1_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="second_hold2_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="second_hold3_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="second_hold4_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="second_hold5_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="second_total_out"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td></td>
+                                    <td> <input type="text" class="form-control input-sm" id="gang_total"></td>
+                                    <td><input type="text" class="form-control input-sm" id="total_hold1_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="total_hold2_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="total_hold3_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="total_hold4_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="total_hold5_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="total_total"></td>
+
+                                </tr>
+                                <tr>
+                                    <td>Previous</td>
+                                    <td>-</td>
+                                    <td><input type="text" class="form-control input-sm" id="gang_previous" value="@(ViewBag.PreviousInfo != null ? ViewBag.PreviousInfo.gang_previous : string.Empty)"></td>
+                                    <td><input type="text" class="form-control input-sm" id="previous_hold1_out" value="@(ViewBag.PreviousInfo != null ? ViewBag.PreviousInfo.previous_hold1_out : string.Empty)"></td>
+                                    <td><input type="text" class="form-control input-sm" id="previous_hold2_out" value="@(ViewBag.PreviousInfo != null ? ViewBag.PreviousInfo.previous_hold2_out : string.Empty)"></td>
+                                    <td><input type="text" class="form-control input-sm" id="previous_hold3_out" value="@(ViewBag.PreviousInfo != null ? ViewBag.PreviousInfo.previous_hold3_out : string.Empty)"></td>
+                                    <td><input type="text" class="form-control input-sm" id="previous_hold4_out" value="@(ViewBag.PreviousInfo != null ? ViewBag.PreviousInfo.previous_hold4_out : string.Empty)"></td>
+                                    <td><input type="text" class="form-control input-sm" id="previous_hold5_out" value="@(ViewBag.PreviousInfo != null ? ViewBag.PreviousInfo.previous_hold5_out : string.Empty)"></td>
+                                    <td><input type="text" class="form-control input-sm" id="previous_total" value="@(ViewBag.PreviousInfo != null ? ViewBag.PreviousInfo.previous_total : string.Empty)"></td>
+
+
+                                </tr>
+                                <tr style="background-color: #95d6a9">
+                                    <td>G.Total</td>
+                                    <td></td>
+                                    <td> <input type="text" class="form-control input-sm" id="gang_grand_total"></td>
+                                    <td><input type="text" class="form-control input-sm" id="grand_hold1_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="grand_hold2_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="grand_hold3_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="grand_hold4_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="grand_hold5_out"></td>
+                                    <td><input type="text" class="form-control input-sm" id="grand_total"></td>
+
+                                </tr>
+                                <tr>
+                                    <td>Balance cargo on board</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><input type="text" class="form-control input-sm" id="balance_cargo_hold1"></td>
+                                    <td><input type="text" class="form-control input-sm" id="balance_cargo_hold2"></td>
+                                    <td><input type="text" class="form-control input-sm" id="balance_cargo_hold3"></td>
+                                    <td><input type="text" class="form-control input-sm" id="balance_cargo_hold4"></td>
+                                    <td><input type="text" class="form-control input-sm" id="balance_cargo_hold5"></td>
+                                    <td><input type="text" class="form-control input-sm" id="balance_total"></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        @*<div style="float:right">
+                                <a href="#" class="btn btn-sm btn-success mybtn"> Update</a>
+                            </div>*@
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Comm. Loading<span class="mandatoryIndicator">*</span></label>
+
+                        <div style="display: flex;">
+                            <input class="form-control input-sm" id="comm_loading" placeholder="DD/MM/YYYY">
+                            <select ID="from_HH_comm_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>HH</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                            </select>
+                            <select ID="from_MM_comm_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>MM</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                            </select>
+                            <label for="exampleInputEmail1" style="margin-top: 5px;">&nbsp;-&nbsp;</label>
+                            <input class="form-control input-sm" id="to_comm_loading" placeholder="DD/MM/YYYY">
+                            <select ID="to_HH_comm_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>HH</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                            </select>
+                            <select ID="to_MM_comm_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>MM</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Comp. Loading<span class="mandatoryIndicator">*</span></label>
+
+                        <div style="display: flex;">
+                            <input class="form-control input-sm" id="comp_loading" placeholder="DD/MM/YYYY">
+                            <select ID="from_HH_comp_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>HH</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                            </select>
+                            <select ID="from_MM_comp_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>MM</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                            </select>
+                            <label for="exampleInputEmail1" style="margin-top: 5px;">&nbsp;-&nbsp;</label>
+                            <input class="form-control input-sm" id="to_comp_loading" placeholder="DD/MM/YYYY">
+                            <select ID="to_HH_comp_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>HH</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                            </select>
+                            <select ID="to_MM_comp_loading" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>MM</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <div style="display: flex;">
+                            <input class="form-control input-sm" id="loading_text">:
+                            <input class="form-control input-sm" id="loading_text_date" placeholder="DD/MM/YYYY">
+
+                            <select ID="from_HH_loading_text" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>HH</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                            </select>
+                            <select ID="to_MM_loading_text" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                                <option value=''>MM</option>
+                                <option value="0">00</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                            </select>
+                            <input class="form-control input-sm" id="loading_text_until">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="box-body" style="display:none" id="manifest">
+                <div class="table-responsive">
+                    <table class="table table-responsive table-hover table-striped" id="tbl_InBoundManiFest">
+                        <thead id="theadIssuesResult" class="customThead" style="background-color: #b16726">
+                            <tr>
+                                <th>Action</th>
+                                <th>Date/Hutch Number</th>
+                                <th>Gang</th>
+                                <th>Hold</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                Remarks
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1">Working Time<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="working_time">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1">Working Through<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="working_through">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                Vessel's Condition On Arrival
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1" style="
+    margin-top: 26px;
+">Draft<span class="mandatoryIndicator">*</span></label>
+                    @*<input type="text" class="form-control input-sm" id="draft">*@
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">Fwd<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" value=@ViewBag.results.fwd readonly="readonly" class="form-control input-sm" id="fwd">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">Aft<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value=@ViewBag.results.aft readonly="readonly" id="aft">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1" style="
+    margin-top: 26px;
+">Bunker R.O.B<span class="mandatoryIndicator">*</span></label>
+                    @*<input type="text" class="form-control input-sm" id="bunker_rob">*@
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">F.O<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value=@ViewBag.results.fo readonly="readonly" id="fo">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">D.O<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value=@ViewBag.results.doo readonly="readonly" id="doo">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">FW<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value=@ViewBag.results.fw readonly="readonly" id="fw">
+                </div>
+
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                Remark's
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Date of Action<span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input class="form-control input-sm" id="date_of_action" placeholder="DD/MM/YYYY">
+                        <select ID="HH_date_of_action" style="width: 70px;" class="required_box">
+                        </select>
+                        <select ID="MM_date_of_action" style="width: 70px;" class="required_box">
+                        </select>
+                        <label for="exampleInputEmail1" style="margin-top: 5px;">&nbsp;-&nbsp;</label>
+                        <select id="to_HH_date_of_action" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                            <option value="">HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                        </select>
+                        <select id="to_MM_date_of_action" runat="server" style="width: 60px;" class="form-control input-sm required_box">
+                            <option value="">MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-8">
+                    <label for="exampleInputEmail1">Comments<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" multiple class="form-control input-sm" id="remarks_comments">
+                </div>
+                <div class="form-group col-md-1" style="margin-top: 22px;">
+                    <div style="float:right">
+                        <a href="#" class="btn btn-sm btn-success" id="addRemarks"> Add</a>
+                        @*<a href="" class="btn btn-sm btn-success mybtn_Edit" id="myEditbtn" style="display: none;"> Update</a>
+                            <a href="" class="btn btn-sm btn-danger mybtn_Edit_Cancel" id="myEditCancel" style="display: none;"> Cancel</a>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-12" id="StatusHistory">
+                    @*<div style="font-weight: bold; margin-top: 20px;">
+                            On April 14, 2022
+                            <button class="btn btn-link delete-btn" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button>
+                        </div>
+
+                        <div style="margin-left: 20px;">
+                            0700 hrs. : THE VESSEL ARRIVED KOH SI-CHANG PILOT STATION.
+                            <button class="btn btn-link modify-btn" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></button>
+                        </div>
+                        <div style="margin-left: 20px;">
+                            0700 hrs.: Nor T.
+                            <button class="btn btn-link modify-btn" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></button>
+                        </div>
+                        <div style="margin-left: 20px;">
+                            0730 hrs.: PILOT ON BOARD.
+                            <button class="btn btn-link modify-btn" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></button>
+                        </div>
+
+                        <div style="font-weight: bold; margin-top: 20px;">
+                            On April 15, 2022
+                            <button class="btn btn-link delete-btn" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button>
+                        </div>
+
+                        <div style="margin-left: 20px;">
+                            0000-0430 hrs. : CONTINUED WORKING 2 GANGS.(H/ 1,2.) BY FLOATING CRANE
+                            <button class="btn btn-link modify-btn" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></button>
+                        </div>*@
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/settings/DailyReport_Create.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+   
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="~/Content/custom_scripts/settings/DailyReport_Create.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // Populate the options for hours and minutes
+            for (let i = 0; i <= 23; i++) {
+                $("#EAT_HH_pilot_on_board_departure").append(`<option value="${i}">${i.toString().padStart(2, '0')}</option>`);
+            }
+
+            for (let i = 0; i <= 59; i++) {
+                $("#EAT_MM_pilot_on_board_departure").append(`<option value="${i}">${i.toString().padStart(2, '0')}</option>`);
+            }
+
+            // Initialize datepicker
+            $("#pilot_on_board_departure").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#from_daily_discharge_cargo").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#to_daily_discharge_cargo").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#from_comm_discharge").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#to_comm_discharge").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#to_comp_discharge").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#from_comp_discharge").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#date_of_action").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#report_date").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            for (let i = 0; i <= 24; i++) {
+                $("#HH_date_of_action").append(`<option value="${i}">${i.toString().padStart(2, '0')}</option>`);
+            }
+
+            for (let i = 0; i <= 59; i++) {
+                $("#MM_date_of_action").append(`<option value="${i}">${i.toString().padStart(2, '0')}</option>`);
+            }
+
+            $("#comm_loading").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $("#to_comm_loading").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#comp_loading").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#to_comp_loading").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $("#loading_text_date").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}
+
+

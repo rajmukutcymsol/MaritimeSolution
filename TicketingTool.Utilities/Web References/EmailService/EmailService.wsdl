@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="send_mail_msg_txt_body">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_FROMNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_TO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_CC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_SUBJECT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_BODY" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_mail_msg_txt_bodyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="send_mail_msg_txt_bodyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_mail_msg_txt_body_withattchment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_FROMNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_TO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_CC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_SUBJECT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_BODY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Attachment" type="tns:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="send_mail_msg_txt_body_withattchmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="send_mail_msg_txt_body_withattchmentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_mail_msg_html_body">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_FROMNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_TO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_CC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_SUBJECT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_BODY" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_mail_msg_html_bodyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="send_mail_msg_html_bodyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_mail_msg_html_body_withattchment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_FROMNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_TO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_CC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_SUBJECT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_BODY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Attachment" type="tns:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_mail_msg_html_body_withattchmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="send_mail_msg_html_body_withattchmentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="send_mail_msg_txt_bodySoapIn">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_txt_body" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_txt_bodySoapOut">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_txt_bodyResponse" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_txt_body_withattchmentSoapIn">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_txt_body_withattchment" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_txt_body_withattchmentSoapOut">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_txt_body_withattchmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_bodySoapIn">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_html_body" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_bodySoapOut">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_html_bodyResponse" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_body_withattchmentSoapIn">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_html_body_withattchment" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_body_withattchmentSoapOut">
+    <wsdl:part name="parameters" element="tns:send_mail_msg_html_body_withattchmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_txt_bodyHttpGetIn">
+    <wsdl:part name="_FROMNAME" type="s:string" />
+    <wsdl:part name="_TO" type="s:string" />
+    <wsdl:part name="_CC" type="s:string" />
+    <wsdl:part name="_SUBJECT" type="s:string" />
+    <wsdl:part name="_BODY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_txt_bodyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_bodyHttpGetIn">
+    <wsdl:part name="_FROMNAME" type="s:string" />
+    <wsdl:part name="_TO" type="s:string" />
+    <wsdl:part name="_CC" type="s:string" />
+    <wsdl:part name="_SUBJECT" type="s:string" />
+    <wsdl:part name="_BODY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_bodyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_txt_bodyHttpPostIn">
+    <wsdl:part name="_FROMNAME" type="s:string" />
+    <wsdl:part name="_TO" type="s:string" />
+    <wsdl:part name="_CC" type="s:string" />
+    <wsdl:part name="_SUBJECT" type="s:string" />
+    <wsdl:part name="_BODY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_txt_bodyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_bodyHttpPostIn">
+    <wsdl:part name="_FROMNAME" type="s:string" />
+    <wsdl:part name="_TO" type="s:string" />
+    <wsdl:part name="_CC" type="s:string" />
+    <wsdl:part name="_SUBJECT" type="s:string" />
+    <wsdl:part name="_BODY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="send_mail_msg_html_bodyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="EmailServiceSoap">
+    <wsdl:operation name="send_mail_msg_txt_body">
+      <wsdl:input message="tns:send_mail_msg_txt_bodySoapIn" />
+      <wsdl:output message="tns:send_mail_msg_txt_bodySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_txt_body_withattchment">
+      <wsdl:input message="tns:send_mail_msg_txt_body_withattchmentSoapIn" />
+      <wsdl:output message="tns:send_mail_msg_txt_body_withattchmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body">
+      <wsdl:input message="tns:send_mail_msg_html_bodySoapIn" />
+      <wsdl:output message="tns:send_mail_msg_html_bodySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body_withattchment">
+      <wsdl:input message="tns:send_mail_msg_html_body_withattchmentSoapIn" />
+      <wsdl:output message="tns:send_mail_msg_html_body_withattchmentSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="EmailServiceHttpGet">
+    <wsdl:operation name="send_mail_msg_txt_body">
+      <wsdl:input message="tns:send_mail_msg_txt_bodyHttpGetIn" />
+      <wsdl:output message="tns:send_mail_msg_txt_bodyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body">
+      <wsdl:input message="tns:send_mail_msg_html_bodyHttpGetIn" />
+      <wsdl:output message="tns:send_mail_msg_html_bodyHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="EmailServiceHttpPost">
+    <wsdl:operation name="send_mail_msg_txt_body">
+      <wsdl:input message="tns:send_mail_msg_txt_bodyHttpPostIn" />
+      <wsdl:output message="tns:send_mail_msg_txt_bodyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body">
+      <wsdl:input message="tns:send_mail_msg_html_bodyHttpPostIn" />
+      <wsdl:output message="tns:send_mail_msg_html_bodyHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmailServiceSoap" type="tns:EmailServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="send_mail_msg_txt_body">
+      <soap:operation soapAction="http://tempuri.org/send_mail_msg_txt_body" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_txt_body_withattchment">
+      <soap:operation soapAction="http://tempuri.org/send_mail_msg_txt_body_withattchment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body">
+      <soap:operation soapAction="http://tempuri.org/send_mail_msg_html_body" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body_withattchment">
+      <soap:operation soapAction="http://tempuri.org/send_mail_msg_html_body_withattchment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmailServiceSoap12" type="tns:EmailServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="send_mail_msg_txt_body">
+      <soap12:operation soapAction="http://tempuri.org/send_mail_msg_txt_body" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_txt_body_withattchment">
+      <soap12:operation soapAction="http://tempuri.org/send_mail_msg_txt_body_withattchment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body">
+      <soap12:operation soapAction="http://tempuri.org/send_mail_msg_html_body" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body_withattchment">
+      <soap12:operation soapAction="http://tempuri.org/send_mail_msg_html_body_withattchment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmailServiceHttpGet" type="tns:EmailServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="send_mail_msg_txt_body">
+      <http:operation location="/send_mail_msg_txt_body" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body">
+      <http:operation location="/send_mail_msg_html_body" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmailServiceHttpPost" type="tns:EmailServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="send_mail_msg_txt_body">
+      <http:operation location="/send_mail_msg_txt_body" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_mail_msg_html_body">
+      <http:operation location="/send_mail_msg_html_body" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmailService">
+    <wsdl:port name="EmailServiceSoap" binding="tns:EmailServiceSoap">
+      <soap:address location="http://10.133.34.55/EmailService/EmailService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmailServiceSoap12" binding="tns:EmailServiceSoap12">
+      <soap12:address location="http://10.133.34.55/EmailService/EmailService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmailServiceHttpGet" binding="tns:EmailServiceHttpGet">
+      <http:address location="http://10.133.34.55/EmailService/EmailService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmailServiceHttpPost" binding="tns:EmailServiceHttpPost">
+      <http:address location="http://10.133.34.55/EmailService/EmailService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

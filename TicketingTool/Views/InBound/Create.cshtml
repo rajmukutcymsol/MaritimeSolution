@@ -1,0 +1,733 @@
+﻿@model TicketingTool.Models.ViewModel.vm_master
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Create Port Call</h3>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-sm btn-success btnsave" id="btnSave"> Save</a>
+                <a href="/InBound/Index" class="btn btn-sm btn-danger btnCancel" id="btnCancel"> Cancel</a>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Port Call ID <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.auto_id" readonly="readonly" id="auto_id" placeholder="Auto ID">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Select Vessel Name <span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Title", new SelectList(Model.mastervessel, "id", "vesselName"), new { @class = "form-control input-sm", @id = "vessel_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Select Port of Discharge  <span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Title", new SelectList(Model.masterport, "id", "discharge_port_name"), new { @class = "form-control input-sm", @id = "discharge_port" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1" id="eat_display">ETA <span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input class="form-control input-sm" id="EAT_Date" placeholder="DD/MM/YYYY" style="width: 88px;">
+                        <select ID="EAT_HH" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <!-- options for hours here -->
+                        </select>
+                        <select ID="EAT_MM" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+
+                            <!-- options for minutes here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ref No.</label>
+                        <input type="text" class="form-control" id="refNo" name="refNo" placeholder="Enter REF NO.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rcn No.</label>
+                        <input type="text" class="form-control" id="rcn" name="rcn" placeholder="Enter RCN NO.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Load Port<span class="mandatoryIndicator">*</span> </label>
+                        <input type="text" class="form-control" id="LoadPort" name="LoadPort" placeholder="Enter Load Port.">
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-top:23px">
+                    <div style="float:center">
+                        <button type="button" id="btnProcess" class="btn btn-success btn-sm btnProcess"><i class="fa fa-save"></i> Process Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border" id="masterdetails_section">
+            <h3 class="box-title">Other Information</h3>
+        </div>
+        <div class="box-body" id="masterdetails">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Voyage No.<span class="mandatoryIndicator">*</span></label>
+                        <input type="text" class="form-control" id="VoyageNo" name="VoyageNo" placeholder="Enter Master Name.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Last Port of Call<span class="mandatoryIndicator">*</span></label>
+                        <input type="text" class="form-control" id="LastPortofCall" name="LastPortofCall" placeholder="Enter Master Name.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Master Name<span class="mandatoryIndicator">*</span></label>
+                        <input type="text" class="form-control" id="mastername" name="mastername" placeholder="Enter Master Name.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Contact Number</label>
+                        <input type="text" class="form-control" id="mastercontactnumber" name="mastercontactnumber" placeholder="Enter Contact Number.">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="text" class="form-control" id="masteremail" name="masteremail" placeholder="Enter Email.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            Checker's Details
+                        </label>
+                        @Html.DropDownList("checker_name", new SelectList(Model.vm_checker, "id", "checker_name"), new { @class = "form-control input-sm", @id = "checker_name" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Owner’s Details</label>
+                        @Html.DropDownList("OwnerId", new SelectList(Model.masterowners, "id", "owners_name"), new { @class = "form-control input-sm", @id = "owners_name" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Receiver’s Details</label>
+                        @Html.DropDownList("ReceiverId", new SelectList(Model.masterreciver, "id", "receiver_name"), new { @class = "form-control input-sm", @id = "receiver_name" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Surveyor Details</label>
+                        @Html.DropDownList("SurveyorId", new SelectList(Model.mastersurveyor, "id", "surveyor_name"), new { @class = "form-control input-sm", @id = "surveyor_name" })
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            Shipping's Details
+                        </label>
+                        @Html.DropDownList("shipping_name", new SelectList(Model.vm_shipping, "id", "shipping_name"), new { @class = "form-control input-sm", @id = "shipping_name" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Lightering Operations</label>
+                        @Html.DropDownList("StevedoreId", new SelectList(Model.masterstevedore, "id", "stevedore_name"), new { @class = "form-control input-sm", @id = "stevedore_name" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            FC/Stevedore Operations
+                        </label>
+                        @Html.DropDownList("FC_Stevedore_Name", new SelectList(Model.FC_Stevedore_Name, "id", "FC_Stevedore_Name"), new { @class = "form-control input-sm", @id = "FC_Stevedore_Name" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            LAT
+                        </label>
+                        <input type="text" class="form-control" id="lat" name="masteremail" placeholder="Enter lat.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            LONG
+                        </label>
+                        <input type="text" class="form-control" id="longt" name="masteremail" placeholder="Enter long.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border" id="etanotice_section">
+            <h3 class="box-title">ETA. NOTICE</h3>
+        </div>
+        <div class="box-body" id="etanotice">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">ETA. NOTICE </label>
+                    <div style="display: flex;">
+                        <input type="text" class="form-control input-sm" id="eta_notice" name="refno" />
+                        <select ID="EAT_HH_eta_notice" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <!-- options for hours here -->
+                        </select>
+                        <select ID="EAT_MM_eta_notice" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                            <!-- options for minutes here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">NOR Notice <span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input type="text" class="form-control input-sm" @*value="@Model.pilot_on_board"*@ id="nor_notice">
+                        <select ID="EAT_HH_nor_notice" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <!-- options for hours here -->
+                        </select>
+                        <select ID="EAT_MM_nor_notice" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+
+                            <!-- options for minutes here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Commence to discharge cargo</label>
+                    <div style="display: flex;">
+                        <input type="text" class="form-control input-sm" id="commence_to_discharge_cargo" name="refno" />
+                        <select ID="EAT_HH_commence_to_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <!-- options for hours here -->
+                        </select>
+                        <select ID="EAT_MM_commence_to_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            <option value="0">00</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+
+                            <!-- options for minutes here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Est. to complete loading cargo  </label>
+                    <input type="text" class="form-control input-sm" id="est_to_complete_loading_cargo" />
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Plan for sailing   </label>
+                    <input type="text" class="form-control input-sm" id="plan_of_sailing" />
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">How Many days vessel will stay at load port</label>
+                            <select id="vessels_stay" class="form-control">
+                                <option value="0">--Select--</option>
+                                <option value="1">1 Day</option>
+                                <option value="2">2 Day</option>
+                                <option value="3">3 Day</option>
+                                <option value="4">4 to 60 Days.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="box-header with-border" id="inward_section">
+            <h3 class="box-title">BL Related Information</h3>
+            <label style="float:right">
+            </label>
+        </div>
+        <div class="box-body" id="inward">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">BL NO.<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control" id="blno" name="blno" />
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">SHIPPER(SH)<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("shipper_name", new SelectList(Model.vm_shipper, "id", "shipper_name"), new { @class = "form-control input-sm", @id = "shipper_name" })
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1"> CONSIGNEE(CN)<span class="mandatoryIndicator">*</span> </label>
+                    <input type="text" class="form-control" id="consignee" name="consignee" />
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1"> NOTIFY(NY) <span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("ReceiverId", new SelectList(Model.masterreciver, "id", "receiver_name"), new { @class = "form-control input-sm", @id = "notify" })
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">
+                        MARKS & NOS
+                        UNIT NO<span class="mandatoryIndicator">*</span>
+                    </label>
+                    @Html.DropDownList("marks_and_nos_name", new SelectList(Model.vm_marks_and_nos, "id", "marks_and_nos_name"), new { @class = "form-control input-sm", @id = "marks_and_nos_name" })
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">TYPE OF CARGO<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("cargo_type_name", new SelectList(Model.Master_cargo_type, "id", "cargo_type_name"), new { @class = "form-control input-sm", @id = "cargo_type_name" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">QUANTITY & KIND OF CARGO<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Quantity_and_Kind_of_cargo_name", new SelectList(Model.quantity_and_Kind_of_cargo, "id", "Quantity_and_Kind_of_cargo_name"), new { @class = "form-control input-sm", @id = "quantity_and_kind_of_cargo_name" })
+
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">GROSS WEIGHT OF CARGO (MT)<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control" id="quantity" name="quantity" />
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">UNIT OF CARGO<span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Master_quantity_cargo", new SelectList(Model.Master_quantity_cargo, "id", "qtt_name"), new { @class = "form-control input-sm", @id = "qtt_name" })
+                </div>
+                <div class="col-md-3" style="margin-top:27px;">
+                    <input type="checkbox" class="minimal" checked id="is_cleanonBoard">
+                    <label for="exampleInputEmail1"> &nbsp; SETUP : CLEAN ON BOARD</label>
+                </div>
+
+            </div>
+            <div class="col-md-12" style="margin-top:23px">
+                <div style="float:right">
+                    <a href="#" class="btn btn-sm btn-success mybtn" id="mybtn"> Add</a>
+                </div>
+            </div>
+            <div class="col-md-3" style="display:none;">
+                <label for="exampleInputEmail1">
+                    Type of Cargo(DESCRIPTION OF GOODS)
+                </label>
+                <input type="text" class="form-control" id="cargotype_desc" name="cargotype_desc" />
+            </div>
+        </div>
+
+        <div class="box-body" id="manifest">
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover table-striped" id="tbl_InBoundManiFest">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            @*<th>Action</th>*@
+                            <th>BL No</th>
+                            <th>Shipper</th>
+                            <th>Consignee</th>
+                            <th>Notify</th>
+                            <th>Marks and Nos</th>
+                            <th>
+                                Gross Weight of Cargo
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="CanView" value="@ViewBag.CanView" />
+    <input type="hidden" id="IsDownload" value="@ViewBag.IsDownload" />
+    <input type="hidden" id="CanUpdate" value="@Session["CanUpdate"]" />
+    <input type="hidden" id="CanDelete" value="@Session["CanDelete"]" />
+    <input type="hidden" id="CanPrint" value="@ViewBag.CanPrint" />
+    <input type="hidden" id="CanVerify" value="@Session["CanVerify"]" />
+</section>
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#EAT_Date').inputmask('99/99/9999', {
+                placeholder: 'DD/MM/YYYY',
+                alias: 'datetime',
+                inputFormat: 'dd/mm/yyyy',
+            });
+        });
+    </script>
+
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @Scripts.Render("~/bundles/common")
+    <script src="~/Content/custom_scripts/settings/Inboud_Index.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" el="Stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+}
+
+
+
+
+
+

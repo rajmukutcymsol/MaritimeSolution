@@ -1,0 +1,165 @@
+﻿.customThead {
+    background-color: #124191;
+    color: white;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #124191;
+    border-color: #124191;
+}
+
+.ui-datepicker-trigger {
+    cursor: pointer
+}
+
+.ui-state-hover {
+    cursor: pointer !important;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #124191 !important;
+    color: #fff;
+    border-bottom: 0 solid transparent;
+}
+
+
+.btnsave:hover {
+    background: #00a65a !important;
+}
+
+.btnCancel:hover {
+    background: #dd4b39 !important;
+}
+
+.mandatoryIndicator {
+    color: red !important;
+}
+
+
+
+/*#spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.2s;
+}*/
+
+    /* (B) CENTER LOADING SPINNER */
+    /*#spinner img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%);
+    }*/
+
+/* (C) SHOW & HIDE */
+/*#spinner {
+    visibility: hidden;
+    opacity: 0;
+}
+
+    #spinner.show {
+        visibility: visible;
+        opacity: 1;
+    }*/
+
+/* (X) DOES NOT QUITE MATTER */
+/*html, body {
+    margin: 0;
+    padding: 0;
+}*/
+
+
+
+/*.loading-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+}
+
+
+
+.loader {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;*/
+    /* top: 50%; */
+    /* left: 0%; */
+    /* right: 50%; */
+    /*text-align: center;*/
+    /* margin-left: -50px; */
+    /*margin-top: 0px;
+    z-index: 1000;
+    overflow: auto;
+}*/
+
+.center-div {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
+}
+
+.spinner {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: Black;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    -moz-opacity: 0.8;
+}
+
+.loader {
+    margin: auto;
+    border: 16px solid #124191;
+    border-radius: 50%;
+    border-top: 16px solid #124191;
+    border-bottom: 16px solid #124191;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.inner-div {
+    background-color: white;
+    border-radius: 15px;
+    margin: auto;
+    width: 150px;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

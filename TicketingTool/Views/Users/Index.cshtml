@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+@Styles.Render("~/Content/datepicker")
+<section class="content-header">
+    <h1>
+        Manage
+        <small>User</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+        <li class="active">Users</li>
+    </ol>
+</section>
+
+
+
+<section class="content">
+    <div class="box box-primary box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">User List</h3>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover table-striped" id="tblNewRequest">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            <th>Action</th>
+                            <th>Employee Id</th>
+                            <th>Employee Name</th>
+                            <th>Employee Role</th>
+                            <th>Access Role</th>
+                            <th>Email Id</th>
+                            <th>Location</th>
+                            @*<th>Manager Name</th>*@
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-default" style="display: none;">
+        <div class="modal-dialog modal-lg" style="width:1000px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Update User</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputEmail1">Employee Name</label>
+                            <input type="text" class="form-control input-sm" id="employee_name" placeholder="Employee Name">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Employee Id</label>
+                            <input type="text" class="form-control input-sm" id="employee_id" readonly="true" placeholder="Employee Id">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">User Role</label>
+                            <input type="text" class="form-control input-sm" id="user_role" placeholder="User Role">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Display Name</label>
+                            <input type="text" class="form-control input-sm" id="display_name" placeholder="Display Name">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="text" class="form-control input-sm" id="email_id" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">UserName</label>
+                            <input type="text" class="form-control input-sm" id="username" readonly="true" placeholder="UserName">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="text" class="form-control input-sm" id="password" placeholder="">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Location</label>
+                            <input type="text" class="form-control input-sm" id="location" placeholder="Location">
+                        </div>
+
+
+                        @*<div class="form-group col-md-3">
+            <label for="exampleInputPassword1">Manager UserName</label>
+            <input type="text" class="form-control input-sm" id="manager_username" placeholder="Manager User Name">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="exampleInputPassword1">Manager Name</label>
+            <input type="text" class="form-control input-sm" id="manager_name" placeholder="Manager Name">
+        </div>*@
+
+                        @*<div class="form-group col-md-3">
+            <label for="exampleInputPassword1">Cost Center</label>
+            <input type="text" class="form-control input-sm" id="cost_center" placeholder="Cost Center">
+        </div>*@
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputtext1">Access Role <span class="mandatoryIndicator">*</span></label>
+                            @Html.DropDownList("AccessRole", new SelectList(ViewBag.role, "id", "role_name"), "Select Access Role", new { @class = "form-control input-sm", @id = "access_role_id" })
+                        </div>
+                        @*<div class="form-group col-md-6">
+            <label for="exampleInputPassword1">Department</label>
+            <textarea type="text" class="form-control input-sm" rows="2" cols="50" id="department" placeholder="Department"></textarea>
+        </div>*@
+                        <div class="form-group col-md-2">
+                            <label style="margin-top:23px">
+                                <input type="checkbox" class="minimal" id="state">
+                                &nbsp; Is Active
+                            </label>
+                        </div>
+
+
+                        <div class="col-md-4" style="margin-top:23px">
+                            <div style="float:right">
+                                <button type="button" id="btnSave" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <input type="hidden" id="sessionValue" value="@Session["access_role"]" />
+</section>
+
+@section scripts{
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/users/user_list.js"></script>
+}

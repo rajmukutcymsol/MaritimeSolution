@@ -1,0 +1,22 @@
+1. WITH Mapping  
+Developer Group List
+
+Product Manager List
+
+Developer Name List
+
+Solution Arch. List
+
+
+2. with mapping
+
+Project List
+Node Type
+Technology
+Customer
+Domain, 
+Vendor
+
+
+3. Tool / Solution Name mapping with Use Cases List required 
+

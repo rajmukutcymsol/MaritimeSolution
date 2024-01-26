@@ -1,0 +1,669 @@
+﻿@*@model TicketingTool.Models.ViewModel.vm_ArrivalCondition*@
+
+@{
+    ViewBag.Title = "ArrivalCondition";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+
+<section class="content-header">
+    <h1>
+        ARRIVAL / SAILING
+        <small>CONDITION </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-gear"></i> InBound</a></li>
+        <li class="active">ARRIVAL / SAILING CONDITION</li>
+    </ol>
+</section>
+
+<section class="content">
+    <input type="text" id="stwid" style="display:none" />
+
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> ARRIVAL / SAILING CONDITION</h3>
+            <div class="box-tools pull-right">
+                @if (ViewBag.approved == false)
+                {
+                    <a href="#" class="btn btn-sm btn-success" style="display:none" id="btnPrint">Print</a>
+                }
+                else
+                {
+                    <a href="#" class="btn btn-sm btn-success" id="btnPrint">Print</a>
+                }
+                <a href="#" class="btn btn-sm btn-success" id="btnApprove">Verify & Approve</a>
+                <a href="#" class="btn btn-sm btn-success" id="btnsaves">Save</a>
+                <a href="@Url.Action("Index", "InBound")" class="btn btn-sm btn-danger btnCancel" id="btnCancels">Cancel</a>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Port Call ID <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value=@ViewBag.results.auto_id readonly="readonly" id="auto_id" placeholder="Auto ID">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">VESSEL NAME <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.results.vessel_name" readonly="readonly" id="vessel_name">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Flag<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.results.flags" readonly="readonly" id="flags">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">CARGO<span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" @*value="@Model.type_of_cargo"*@ readonly="readonly" id="type_of_cargo">
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputtext1">GROSS WEIGHT OF CARGO (MT)</label>
+                        <input type="text" class="form-control" value="@ViewBag.results.gross_weight_of_cargo" readonly="readonly" id="gross_weight_of_cargo">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="box-header with-border" id="masterdetails_section">
+            <h3 class="box-title">
+                DRAFT
+                ON ARRIVED
+            </h3>
+        </div>
+
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">FWD. </label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.fwd" id="fwd">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">AFT. </label>
+                    <input type="text" class="form-control input-sm"  value="@ViewBag.aft"id="aft" >
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="box-header with-border" id="masterdetails_section">
+            <h3 class="box-title">
+                Bunker R.O.B.
+                ON ARRIVED
+            </h3>
+        </div>
+
+
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">FO. </label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.fo" id="fo" >
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">DO. </label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.doo" id="doo">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputEmail1">FW. </label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.fw" id="fw">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="box-header with-border" id="masterdetails_section">
+            <h3 class="box-title">ARRIVAL CONDITION</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">NOTICE OF READINESS TENDERED </label>
+                    <input type="text" class="form-control input-sm" id="readiness_tendered" value="@ViewBag.results.readiness_tendered" readonly="readonly">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">NOTICE OF READINESS ACCEPTED</label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.readiness_accepted" id="readiness_accepted">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">ARRIVAL AT  <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.results.arrival_at" readonly="readonly">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">PILOT ON BOARD <span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input type="text" class="form-control input-sm" value="@ViewBag.pilot_on_board_arrival" id="pilot_on_board_arrival">
+                        <select ID="EAT_HH_pilot_on_board_arrival" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            @{
+                                string selectedValue = ViewBag.EAT_HH_pilot_on_board_arrival;
+
+                                for (int i = 0; i <= 23; i++)
+                                {
+                                    <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_HH_pilot_on_board_arrival) ? "selected" : "")>@i.ToString("D2")</option>
+                                }
+                            }
+                        </select>
+                        <select ID="EAT_MM_pilot_on_board_arrival" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            @{
+                                string selectedValue1 = ViewBag.EAT_MM_pilot_on_board_arrival;
+
+                                for (int i = 0; i <= 59; i++)
+                                {
+                                    <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_MM_pilot_on_board_arrival) ? "selected" : "")>@i.ToString("D2")</option>
+                                }
+                            }
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">DROPPED ANCHOR<span class="mandatoryIndicator">*</span></label>
+                    <div style="display: flex;">
+                        <input type="text" class="form-control input-sm" value="@ViewBag.dropped_anchor" id="dropped_anchor">
+                        <select ID="EAT_HH_dropped_anchor" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>HH</option>
+                            @{
+                                string selectedValue2 = ViewBag.EAT_HH_dropped_anchor;
+                                for (int i = 0; i <= 23; i++)
+                                {
+                                    <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_HH_dropped_anchor) ? "selected" : "")>@i.ToString("D2")</option>
+                                }
+                            }
+                        </select>
+                        
+                        <!-- options for hours here -->
+                        <!--</select>-->
+                        <select ID="EAT_MM_dropped_anchor" runat="server" style="width: 70px;" class="required_box">
+                            <option value=''>MM</option>
+                            @{
+                                string selectedValue4 = ViewBag.EAT_MM_dropped_anchor;
+
+                                for (int i = 0; i <= 59; i++)
+                                {
+                                    <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_MM_dropped_anchor) ? "selected" : "")>@i.ToString("D2")</option>
+                                }
+                            }
+                        </select>
+                        
+                        <!-- options for minutes here -->
+                        <!--</select>-->
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputtext1">COMMENCED DISCHARGE CARGO<span class="mandatoryIndicator">*</span></label>
+                        <div style="display: flex;">
+                            <input type="text" class="form-control input-sm" value="@ViewBag.commenced_discharge_cargo" id="commenced_discharge_cargo">
+                            <select ID="EAT_HH_commenced_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                                <option value=''>HH</option>
+                                @{
+                                    string selectedValue5 = ViewBag.EAT_HH_commenced_discharge_cargo;
+
+                                    for (int i = 0; i <= 23; i++)
+                                    {
+                                        <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_HH_commenced_discharge_cargo) ? "selected" : "")>@i.ToString("D2")</option>
+                                    }
+                                }
+                            </select>
+                            <!--<select ID="EAT_HH_commenced_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                <option value=''>HH</option>
+                <option value="0">00</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>-->
+                            <!-- options for hours here -->
+                            <!--</select>-->
+                            <select ID="EAT_MM_commenced_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                                <option value=''>MM</option>
+                                @{
+                                    string selectedValue6 = ViewBag.EAT_MM_commenced_discharge_cargo;
+                                    for (int i = 0; i <= 59; i++)
+                                    {
+                                        <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_MM_commenced_discharge_cargo) ? "selected" : "")>@i.ToString("D2")</option>
+                                    }
+                                }
+                            </select>
+                            <!--<select ID="EAT_MM_commenced_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                <option value=''>MM</option>
+                <option value="0">00</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>-->
+                            <!-- options for minutes here -->
+                            <!--</select>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group  col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputtext1">COMPLETED DISCHARGE CARGO<span class="mandatoryIndicator">*</span></label>
+                        <div style="display: flex;">
+                            <input type="text" class="form-control input-sm" value="@ViewBag.completed_discharge_cargo" id="completed_discharge_cargo">
+
+                            <select ID="EAT_HH_completed_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                                <option value=''>HH</option>
+                                @{
+                                    string selectedValue7 = ViewBag.EAT_HH_completed_discharge_cargo;
+
+                                    for (int i = 0; i <= 23; i++)
+                                    {
+                                        <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_HH_completed_discharge_cargo) ? "selected" : "")>@i.ToString("D2")</option>
+                                    }
+                                }
+                            </select>
+                            
+                            <!-- options for hours here -->
+                            <!--</select>-->
+
+                            <select ID="EAT_MM_completed_discharge_cargo" runat="server" style="width: 70px;" class="required_box">
+                                <option value=''>MM</option>
+                                @{
+                                    string selectedValue8 = ViewBag.EAT_MM_completed_discharge_cargo;
+                                    for (int i = 0; i <= 59; i++)
+                                    {
+                                        <option value="@i" @(i == Convert.ToInt32(ViewBag.EAT_MM_completed_discharge_cargo) ? "selected" : "")>@i.ToString("D2")</option>
+                                    }
+                                }
+                            </select>
+                            
+                            <!-- options for minutes here -->
+                            <!--</select>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputtext1">LAT <span class="mandatoryIndicator">*</span></label>
+                        <input type="text" readonly="readonly" class="form-control" value="@ViewBag.results.lat" id="lat">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="form-group col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputtext1">LONG<span class="mandatoryIndicator">*</span></label>
+                        <input type="text" class="form-control" readonly="readonly" value="@ViewBag.results.longt" id="longt">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="box-header with-border" id="masterdetails_section">
+        <h3 class="box-title">DEPARTURE CONDITION</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="exampleInputEmail1">PILOT ON BOARD<span class="mandatoryIndicator">*</span></label>
+                <div style="display: flex;">
+                    <input class="form-control input-sm" id="pilot_on_board_departure"-->
+        @*value=@ViewBag._mainPlan.pilot_on_board*@
+        <!--placeholder="DD/MM/YYYY">
+    <select ID="EAT_HH_pilot_on_board_departure" runat="server" style="width: 70px;" class="required_box">
+        <option value=''>HH</option>
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <!-- options for hours here -->
+        <!--</select>
+    <select ID="EAT_MM_pilot_on_board_departure" runat="server" style="width: 70px;" class="required_box">
+        <option value=''>MM</option>
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>-->
+        <!-- options for minutes here -->
+        <!--</select>
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="exampleInputtext1">DEPARTURE FROM <span class="mandatoryIndicator">*</span></label>
+        <div style="display: flex;">
+            <input type="text" class="form-control input-sm"-->
+        @*value="@Model.dropped_anchor"*@
+        <!--id="departure_from">
+    <select ID="EAT_HH_departure_from" runat="server" style="width: 70px;" class="required_box">
+        <option value=''>HH</option>
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>-->
+        <!-- options for hours here -->
+        <!--</select>
+    <select ID="EAT_MM_departure_from" runat="server" style="width: 70px;" class="required_box">
+        <option value=''>MM</option>
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>-->
+        <!-- options for minutes here -->
+        <!--</select>
+
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="exampleInputtext1">DRAFT ON DEPARTURE<span class="mandatoryIndicator">*</span></label>
+        <input type="text" class="form-control"-->
+        @*value="@Model.flags"*@
+        <!--id="draft_on_departure">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="exampleInputtext1">BUNKER R.O.B. ON DEPARTURE<span class="mandatoryIndicator">*</span></label>
+        <input type="text" class="form-control"-->
+        @*value="@Model.type_of_cargo"*@
+        <!--id="bunker_rob_on_departure">
+            </div>
+
+        </div>
+    </div>
+    <div class="box-header with-border" style="background-color: #e8e9f7; color: #070f40 ">
+        <h3 class="box-title">BUNKER SUPPLY</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+
+            <div class="form-group col-md-3">
+                <label for="exampleInputtext1">FUEL OIL<span class="mandatoryIndicator">*</span></label>
+                <input type="text" class="form-control input-sm"-->
+        @*value="@Model.type_of_cargo"*@
+        <!--id="bunker_fuel_oil">
+
+    </div>
+    <div class="form-group col-md-3">
+        <label for="exampleInputtext1">DIESEL OIL</label>
+        <input type="text" class="form-control input-sm"-->
+        @*value="@Model.type_of_cargo"*@
+        <!--id="bunker_diesel_oil">
+
+    </div>
+    <div class="form-group col-md-3">
+        <label for="exampleInputtext1">FRESH WATER</label>
+        <input type="text" class="form-control input-sm"-->
+        @*value="@Model.type_of_cargo"*@
+        <!--id="bunker_fresh_water">
+
+    </div>
+    <div class="form-group col-md-3">
+        <label for="exampleInputtext1">ETA. NEXT PORT</label>
+        <input type="text" class="form-control input-sm"-->
+        @*value="@Model.type_of_cargo"*@
+        <!--id="bunker_eta_next_port">
+            </div>
+        </div>
+    </div>
+    <div class="box-header with-border" style="background-color: #e8e9f7; color: #070f40 ">
+        <h3 class="box-title">OTHER SUPPLY & SERVICE RENDERED</h3>
+
+    </div>
+    <div class="box-body">
+        <div class="row">
+
+            <div class="form-group col-md-4">
+                <label for="exampleInputtext1">WATCH-MEN<span class="mandatoryIndicator">*</span></label>
+                <input type="text" class="form-control input-sm"-->
+        @*value="@Model.type_of_cargo"*@
+        <!--id="other_watch_man">
+
+    </div>
+    <div class="form-group col-md-4">
+        <label for="exampleInputtext1">POLICE-MEN</label>
+        <input type="text" class="form-control input-sm"-->
+        @*value="@Model.type_of_cargo"*@
+        <!--id="other_police_man">
+
+    </div>
+    <div class="form-group col-md-4">
+        <label for="exampleInputtext1">CASH ADVANCE</label>
+        <input type="text" class="form-control input-sm"-->
+        @*value="@Model.type_of_cargo"*@ @*id="other_cash_advance">*@
+
+    </div>
+        </div>
+    </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/settings/ArrivalCondition.js"></script>
+}
+
+

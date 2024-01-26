@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Map Res Cat</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Project</label>
+                    @Html.DropDownList("ResCat1", new SelectList(ViewBag.ResCat1, "id", "res_cat1_name"), new { @class = "form-control input-sm", @id = "res_cat1" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select Tool</label>
+                    @Html.DropDownList("ResCat2", new SelectList(ViewBag.ResCat2, "id", "res_cat2_name"), new { @class = "form-control input-sm", @id = "res_cat2" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="exampleInputtext1">Select User Cases</label>
+                    @Html.DropDownList("ResCat3", new SelectList(ViewBag.ResCat3, "id", "res_cat3_name"), new { @class = "form-control input-sm", @id = "res_cat3" })
+
+                </div>
+                <div class="col-md-2">
+                    <a href="#" style="margin-top:24px;" class="btn btn-primary btn-sm btnsave" id="btnSave">
+                        Add
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Res Cat Mapping</h3>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover table-striped" id="tbl_ResCat">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            <th>Action</th>
+                            <th>Res Cat 1</th>
+                            <th>Res Cat 2</th>
+                            <th>Res Cat 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/custom_scripts/mapping/ResCatMapping.js"></script>
+
+}
+

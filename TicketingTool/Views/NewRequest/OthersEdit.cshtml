@@ -1,0 +1,173 @@
+﻿@model TicketingTool.Models.ViewModel.vm_master
+@{
+    ViewBag.Title = "OthersEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<input type="hidden" id="id" value="@ViewBag.id" />
+<input type="hidden" id="autoid" value="@ViewBag.auto_id" />
+<input type="hidden" id="requirement_type" />
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Create New Request</h3>
+            <div class="box-tools pull-right">
+                @*<a href="#" class="btn btn-success btn-sm btndraft" id="btndraft">
+                        Draft
+                    </a>*@
+                <a href="#" class="btn btn-success btn-sm btnsave" id="btnSave">
+                    Submit
+                </a>
+                <a href="@Url.Action("Index","NewRequest")" class="btn btn-success btn-sm btnCancel" id="btnCancel">
+                    Cancel
+                </a>
+            </div>
+
+        </div>
+        <div class="box-body">
+            <input type="hidden" value="@ViewBag.requirementType" id="requirement_type" />
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Request Id <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.auto_id" readonly="readonly" id="auto_id" placeholder="Auto ID">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Date <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm datepicker" id="date_of_request" readonly="readonly" placeholder="Date Of Request">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Request for <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="requester" maxlength="250" placeholder="Requester" value="@ViewBag.Requester" readonly="readonly">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">LM Of Requester <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" maxlength="250" id="lm_of_requested" placeholder="LM Of Requester" value="@ViewBag.LM" readonly="readonly">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Priority <span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Priority", new SelectList(Model.priorities, "id", "priority_name"), new { @class = "form-control input-sm", @id = "request_priority" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Title <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" id="request_title" maxlength="250" placeholder="Title">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Project</label>
+                    @Html.DropDownList("Project", new SelectList(ViewBag.ProjectForUser, "id", "project_name"), new { @class = "form-control input-sm", @id = "project_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Customer</label>
+                    <select id="customer" name="customer" class="form-control input-sm"></select>
+                    @*@Html.DropDownList("customer_name", new SelectList(Model.customers, "id", "customer_name"), new { @class = "form-control input-sm", @id = "customer" })*@
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Vendor</label>
+                    <select id="vendor" name="vendor" class="form-control input-sm"></select>
+
+                    @*@Html.DropDownList("Title", new SelectList(Model.vendors, "id", "vendor_name"), new { @class = "form-control input-sm", @id = "vendor" })*@
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Technology <span class="mandatoryIndicator">*</span></label>
+                    @*@Html.DropDownList("Title", new SelectList(Model.technologies, "id", "technology_name"), new { @class = "form-control input-sm", @id = "technology" })*@
+                    <select id="technology" name="technology" class="form-control input-sm"></select>
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Node Type <span class="mandatoryIndicator">*</span></label>
+                    <select id="node_type" name="node_type" class="form-control input-sm"></select>
+                    @*@Html.DropDownList("NodeType", new SelectList(Model.node_types, "id", "node_type_name"), new { @class = "form-control input-sm", @id = "node_type" })*@
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Domain</label>
+                    @Html.DropDownList("Title", new SelectList(Model.domains, "id", "domain_name"), new { @class = "form-control input-sm", @id = "domain" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">CLI/GUI</label>
+                    @Html.DropDownList("Title", new SelectList(Model.mastercligui, "id", "cli_ui_name"), new { @class = "form-control input-sm", @id = "cli_ui_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Connectivity Avail.</label>
+                    @Html.DropDownList("Connectivity Availability", new SelectList(Model.boolean_dropdowns, "Value", "Key"), new { @class = "form-control input-sm", @id = "connectivity_availability" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Crediential Avail.</label>
+                    @Html.DropDownList("Crediential Availability", new SelectList(Model.boolean_dropdowns, "Value", "Key"), new { @class = "form-control input-sm", @id = "crediential_availability" })
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Function <span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Title", new SelectList(Model.functions, "id", "function_name"), new { @class = "form-control input-sm", @id = "function_id" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Function Level <span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Title", new SelectList(Model.function_levels, "id", "function_level"), new { @class = "form-control input-sm", @id = "function_level" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Region/Country <span class="mandatoryIndicator">*</span></label>
+                    @Html.DropDownList("Title", new SelectList(Model.regions, "id", "region_name"), new { @class = "form-control input-sm", @id = "region" })
+                </div>
+
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Exp Time Completion (hr) <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm numberonly" maxlength="8" id="expected_time_effort_hr" placeholder="Completion Time">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Resolution Offered</label>
+                    @Html.DropDownList("is_resolution_offered", new SelectList(ViewBag.BooleanDropdown, "Value", "Key"), new { @class = "form-control input-sm", @id = "is_resolution_offered" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Benefits</label>
+                    @Html.DropDownList("Efficiency", new SelectList(Model.efficiencies, "id", "efficiency_name"), "Select", new { @class = "form-control input-sm", @id = "efficiency" })
+                </div>
+                <div class="form-group col-md-3" id="efficiency_value_section" style="display:none">
+                    <label for="exampleInputtext1" id="efficiency_label">Efficiency Value <span class="mandatoryIndicator">*</span></label>
+                    <input type="text" class="form-control input-sm" maxlength="8" id="efficiency_value" placeholder="Efficiency Value">
+                </div>
+            </div>
+
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Description</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="exampleInputtext1">Description</label>
+                    <textarea type="text" cols="50" rows="4" maxlength="500" class="form-control input-sm" id="request_description" placeholder="Enter Description Of Request"></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleInputtext1">Notes</label>
+                    <textarea type="text" rows="4" cols="50" maxlength="500" class="form-control input-sm" id="request_notes" placeholder="text"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Uploads</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Attachment Name</label>
+                    <input type="text" class="form-control input-sm" id="mop_or_sop" maxlength="250" placeholder="Attachment Name">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputFile">Attachments</label>
+                    <input type="file" class="form-control input-sm" id="mop_sop_attachment_path" multiple>
+                </div>
+                <div class="table-responsive" id="tbldata">
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="sessionValue" value="@Session["access_role"]" />
+    <input type="hidden" id="sessionUserName" value="@Session["user_name"]" />
+    @*<input type="hidden" id="requestedstatuss" value="@Session["requestedstatus"]" />*@
+
+</section>
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/OthersEditNewRequests")
+}
+

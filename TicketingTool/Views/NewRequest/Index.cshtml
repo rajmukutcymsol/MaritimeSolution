@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "New Request View";
+}
+
+
+<link href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+@Styles.Render("~/Content/datepicker")
+
+<section class="content">
+
+    <div class="box box-primary box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">New Request List</h3>
+            <div class="box-tools pull-right">
+                <div class="box-tools pull-right">
+                    <a href="@Url.Action("Create","NewRequest")"  class="btn btn-success btn-sm btnsave" id="btnSave">
+                        Create New
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-4">
+                    <div class="box-header with-border" style="display: flex; align-items: center;">
+                        <label for="filterStatus" style="margin-right: 15px;">Filter </label>
+                        @Html.DropDownList("Status", new SelectList(ViewBag.statuses, "id", "status_name"), new { @class = "form-control input-sm selectpicker background-color: white", multiple = "multiple", @id = "request_status" })
+                    </div>
+                </div>
+                <div class="col-md-8">
+
+                </div>
+            </div>
+
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="tblNewRequest">
+                    <thead id="theadIssuesResult" class="customThead">
+                        <tr>
+                            <th>Action</th>
+                            <th>Request Id</th>
+                            <th>Project Name</th>
+                            <th>Request Title</th>
+                            <th>Request Date</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Requester</th>
+                            <th>Solution Offered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="modal-default" style="display: none;">
+        <div class="modal-dialog modal-lg" style="width:1000px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Request View</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputEmail1">Request Id</label>
+                            <input type="text" class="form-control input-sm" id="auto_id" placeholder="Auto ID">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">From Date</label>
+                            <input type="text" class="form-control input-sm datepicker" id="fromDate" placeholder="From Date">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">To Date</label>
+                            <input type="text" class="form-control input-sm datepicker" id="toDate" placeholder="To Date">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Title Of Request</label>
+                            <input type="text" class="form-control input-sm" id="request_title" placeholder="Title">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Priority</label>
+                            @Html.DropDownList("Title", new SelectList(ViewBag.priority, "id", "priority_name"), "Select", new { @class = "form-control input-sm", @id = "request_priority" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1">Status</label>
+                            @Html.DropDownList("Title", new SelectList(ViewBag.status, "id", "status_name"), "Select", new { @class = "form-control input-sm", @id = "request_status" })
+                        </div>
+                        <div class="col-md-6" style="margin-top:23px">
+                            <div style="float:right">
+                                <button type="button" id="btnSearchInModal" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+                                <button type="button" id="btnClear" class="btn btn-info"><i class="fa fa-refresh"></i> Clear</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <input type="hidden" id="sessionValue" value="@Session["access_role"]" />
+    <input type="hidden" id="sessionUserName" value="@Session["user_name"]" />
+    <div id="isAdminTruValue" data-admin-tru="@ViewBag.AdminTru.ToString().ToLower()"></div>
+
+</section>
+
+
+@section scripts{
+   
+    @Scripts.Render("~/bundles/datepicker")
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @Scripts.Render("~/bundles/NewRequestList")
+
+
+}
+

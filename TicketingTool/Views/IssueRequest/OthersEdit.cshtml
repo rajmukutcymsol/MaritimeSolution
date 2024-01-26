@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "OthersEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="box box-primary box-solid bg-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Issue Or Problem Request</h3>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-sm btn-success btnsave" id="btnSave"> Final Update</a>
+                <a href="@Url.Action("Index","IssueRequest")" class="btn btn-sm btn-danger btnCancel" id="btnCancel"> Cancel</a>
+            </div>
+        </div>
+        <div class="box-body">
+            <input type="hidden" id="id" value="@ViewBag.Id" />
+            <input type="hidden" value="@ViewBag.requirementType" id="requirement_type" />
+            <input type="hidden" value="@ViewBag.requirementType" id="requirement_type" />
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Request Id</label>
+                    <input type="text" class="form-control input-sm" value="@ViewBag.auto_id" readonly="readonly" id="auto_id" placeholder="Auto ID">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Date</label>
+                    <input type="text" class="form-control input-sm datepicker" id="date_of_request" readonly="readonly" placeholder="Date Of Request">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Request for</label>
+                    <input type="text" class="form-control input-sm" id="requester" placeholder="Requester" value="@ViewBag.Requester" readonly="readonly">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">LM Of Requester</label>
+                    <input type="text" class="form-control input-sm" id="lm_of_requested" placeholder="LM Of Requester" value="@ViewBag.LM" readonly="readonly">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Priority</label>
+                    @Html.DropDownList("Title", new SelectList(ViewBag.priority, "id", "priority_name"), new { @class = "form-control input-sm", @id = "request_priority" })
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Title</label>
+                    <input type="text" class="form-control input-sm" id="request_title" maxlength="250" placeholder="Title">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Project</label>
+                    @Html.DropDownList("Project", new SelectList(ViewBag.ProjectForUser, "id", "project_name"), new { @class = "form-control input-sm", @id = "project_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">CLI/GUI</label>
+                    @Html.DropDownList("Title", new SelectList(Model.mastercligui, "id", "cli_ui_name"), new { @class = "form-control input-sm", @id = "cli_ui_name" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Domain</label>
+                    @Html.DropDownList("Title", new SelectList(Model.domains, "id", "domain_name"), new { @class = "form-control input-sm", @id = "domain" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Tool / Solution Name</label>
+                    <select id="tool_solution_name" name="tool_solution_name" class="form-control input-sm"></select>
+                    @*@Html.DropDownList("SolutionName", new SelectList(ViewBag.master_tool, "id", "tool_name"), new { @class = "form-control input-sm", @id = "tool_solution_name" })*@
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Use Case Name</label>
+                    <select id="use_case_name" name="use_case_name" class="form-control input-sm"></select>
+                    @*@Html.DropDownList("usecases", new SelectList(Model.usecases, "id", "use_case_name"), new { @class = "form-control input-sm", @id = "use_case_name" })*@
+                </div>
+
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Cost Value</label>
+                    <input type="text" class="form-control input-sm numberonly" maxlength="8" id="cost_value" placeholder="Cost Value">
+                </div>
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Connectivity Avail.</label>
+                    @Html.DropDownList("Connectivity Availability", new SelectList(ViewBag.BooleanDropdown, "Value", "Key"), new { @class = "form-control input-sm", @id = "connectivity_availability" })
+                </div>
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Crediential Avail.</label>
+                    @Html.DropDownList("Crediential Availability", new SelectList(ViewBag.BooleanDropdown, "Value", "Key"), new { @class = "form-control input-sm", @id = "crediential_availability" })
+                </div>
+
+
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Expt. Resolution (hr)</label>
+                    <input type="text" class="form-control input-sm" maxlength="18" readonly="readonly" id="expected_time_of_resolution_hour" placeholder="Expected Resolution Hour">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Resolution Offered</label>
+                    @Html.DropDownList("is_resolution_offered", new SelectList(ViewBag.BooleanDropdown, "Value", "Key"), new { @class = "form-control input-sm", @id = "is_resolution_offered" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Business Impact</label>
+                    <input type="text" class="form-control input-sm numberonly" maxlength="8" id="business_benifit" placeholder="Business Benifit">
+                </div>
+
+                <div class="form-group col-md-3" style="display:none">
+                    <label for="exampleInputtext1">Support Engineer</label>
+                    <input type="text" class="form-control input-sm" maxlength="250" id="support_engineer" placeholder="Support Engineer">
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Description</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="exampleInputtext1">Description</label>
+                    <textarea type="text" cols="50" rows="4" class="form-control input-sm" maxlength="500" id="request_description" placeholder="Enter Description Of Request" required></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleInputtext1">Notes</label>
+                    <textarea type="text" rows="4" cols="50" class="form-control input-sm" maxlength="250" id="request_notes" placeholder="text"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Uploads</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="exampleInputtext1">Attachment Name</label>
+                    <input type="text" class="form-control input-sm" id="mop_or_sop" maxlength="250" placeholder="Attachment Name">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputFile">Attachments</label>
+                    <input type="file" class="form-control input-sm" id="mop_sop_attachment_path" multiple>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+        $("#is_resolution_offered").prop("disabled", true);
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/bundles/OthersEditIssues")
+}

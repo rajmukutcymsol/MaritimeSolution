@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet2" targetNamespace="http://tempuri.org/DataSet2.xsd" xmlns:mstns="http://tempuri.org/DataSet2.xsd" xmlns="http://tempuri.org/DataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Hold1" msprop:Generator_TableClassName="Hold1DataTable" msprop:Generator_TableVarName="tableHold1" msprop:Generator_TablePropName="Hold1" msprop:Generator_RowDeletingName="Hold1RowDeleting" msprop:Generator_RowChangingName="Hold1RowChanging" msprop:Generator_RowEvHandlerName="Hold1RowChangeEventHandler" msprop:Generator_RowDeletedName="Hold1RowDeleted" msprop:Generator_UserTableName="Hold1" msprop:Generator_RowChangedName="Hold1RowChanged" msprop:Generator_RowEvArgName="Hold1RowChangeEvent" msprop:Generator_RowClassName="Hold1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="destination" msprop:Generator_ColumnVarNameInTable="columndestination" msprop:Generator_ColumnPropNameInRow="destination" msprop:Generator_ColumnPropNameInTable="destinationColumn" msprop:Generator_UserColumnName="destination" type="xs:string" minOccurs="0" />
+              <xs:element name="_marks_and_nos_name" msprop:Generator_ColumnVarNameInTable="column_marks_and_nos_name" msprop:Generator_ColumnPropNameInRow="_marks_and_nos_name" msprop:Generator_ColumnPropNameInTable="_marks_and_nos_nameColumn" msprop:Generator_UserColumnName="_marks_and_nos_name" type="xs:string" minOccurs="0" />
+              <xs:element name="_cargo_type_name" msprop:Generator_ColumnVarNameInTable="column_cargo_type_name" msprop:Generator_ColumnPropNameInRow="_cargo_type_name" msprop:Generator_ColumnPropNameInTable="_cargo_type_nameColumn" msprop:Generator_UserColumnName="_cargo_type_name" type="xs:string" minOccurs="0" />
+              <xs:element name="_receiver_name" msprop:Generator_ColumnVarNameInTable="column_receiver_name" msprop:Generator_ColumnPropNameInRow="_receiver_name" msprop:Generator_ColumnPropNameInTable="_receiver_nameColumn" msprop:Generator_UserColumnName="_receiver_name" type="xs:string" minOccurs="0" />
+              <xs:element name="holdQuantity" msprop:Generator_ColumnVarNameInTable="columnholdQuantity" msprop:Generator_ColumnPropNameInRow="holdQuantity" msprop:Generator_ColumnPropNameInTable="holdQuantityColumn" msprop:Generator_UserColumnName="holdQuantity" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
